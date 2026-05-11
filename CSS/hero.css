@@ -1,0 +1,6 @@
+/* HERO */
+.hero {
+  height: 100vh;
+  background: url('../assets/Images/12.jpeg') center/cover no-repeat;
+  position: relative;
+}

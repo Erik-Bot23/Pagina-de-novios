@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Nuestra historia ❤️</title>
+  <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+  <!--Musica en loop-->
+  <audio id="bgMusic" loop>
+    <source src="Assets/Music/EVERYTHING.mp3" type="audio/mp3">
+  </audio>
+
+  <!-- Hero -->
+  <header class="hero">
+    <div class="overlay">
+      <h1>Erik y Yanet</h1>
+      <p>Nuestra historia juntos</p>
+    </div>
+  </header>
+
+  <!--Frases-->
+  <section class="section">
+    <div class="card fade phrase-card">
+      <h2>❤️</h2>
+      <p id="phrase">
+        Eres mi lugar favorito ❤️
+      </p>
+    </div>
+  </section>
+
+  <!-- Historia -->
+ <section class="story-section">
+  <div class="story-container">
+    <div class="story-header">
+      <span class="story-heart">❤️</span>
+      <h2>Nuestra historia</h2>
+      <div class="story-line"></div>
+    </div>
+
+    <div class="story-content">
+      <p>
+        Todo comenzó una mañana rumbo al trabajo, para mí iba a ser un día común hasta que te ví y sabía que tenía que hablarte,
+        no podia perder esa oportunidad.
+        Lo que parecía una simple coincidencia poco a poco se convirtió en algo mucho más grande, poco a poco comencé a enamorarme 
+        de ti y tenía que demostrarte que era digno de tu amor.
+        Entre conversaciones, risas y pequeños momentos, comenzamos a construir algo especial.
+        Y día con día quiero seguir demostrandote cuanto te amo y cada día quiero ser mejor hombre para ti.
+      </p>
+      <p>
+        Nustra historia apenas comienza y ya eres una de las mejores cosas que me han pasado, quiero construir una vida a tu lado. ❤️
+      </p>
+    </div>
+  </div>
+ </section>
+
+ <!-- Momentos importantes -->
+<section class="section moments-section">
+    <h2>Momentos importantes</h2>
+
+    <div class="moments-wrapper">
+        <div class="moments-carousel" id="carousel"></div>
+    </div>
+</section>
+
+  <!-- ÁLBUM -->
+<section class="album-section">
+  <h2>Nuestro álbum</h2>
+  <div class="book-container">
+
+    <!--Botón izquierdo-->
+    <button id="prev" class="album-btn">
+        ❮
+    </button>
+
+    <div class="book">
+        <!-- Portada -->
+        <div class="book-cover" id="bookCover">
+            <h3>Erik & Yanet</h3>
+            <span>❤️</span>
+            <p>Nuestros recuerdos</p>
+        </div>
+
+        <!-- Página -->
+        <div class="book-page" id="bookPage">
+            <img id="albumImage" src="" alt="Recuerdo">
+
+            <div class="page-text">
+                <p id="albumText">
+                    Nuestro primer recuerdo ❤️
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!--Botón derecho-->
+    <button id="next" class="album-btn">
+        ❯
+    </button>
+  </div>
+</section>
+
+<!-- RSVP simbólico -->
+<section class="section">
+  <div class="card fade">
+    <h2>💌 Para ti</h2>
+    <p>
+      ¿Qué tanto recuerdas de nuestra historia?
+    </p>
+    <button class="btn" id="openQuizBtn">
+      Comenzar Quiz ❤️
+    </button>
+  </div>
+</section>
+
+<!-- MODAL QUIZ -->
+<div class="quiz-modal" id="quizModal">
+  <div class="quiz-box">
+
+    <!-- cerrar -->
+    <button class="close-quiz" id="closeQuiz">
+      ✕
+    </button>
+
+    <!-- contenido -->
+    <div id="quizContent">
+      <h2 id="quizQuestion"></h2>
+      <div class="quiz-options" id="quizOptions"></div>
+      <p id="quizCounter"></p>
+    </div>
+
+    <!-- resultado -->
+    <div class="quiz-result" id="quizResult">
+      <h2>Resultado ❤️</h2>
+      <p id="scoreText"></p>
+      <button class="btn" id="restartQuiz">
+        Intentar otra vez
+      </button>
+    </div>
+  </div>
+</div>
+
+<!--Footer-->
+<footer class="love-footer">
+  <div class="footer-hearts"></div>
+  <h2>Erik y Yanet ❤️</h2>
+  <p>
+    "Gracias por formar parte de mi historia favorita."
+  </p>
+</footer>
+
+<script type="module" src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+.love-footer{
+    position: relative;
+    overflow: hidden;
+    padding: 100px 20px;
+    text-align: center;
+    background: linear-gradient(
+        180deg,
+        rgba(255,255,255,0),
+        rgba(255,192,203,0.12)
+    );
+    margin-top: 100px;
+}
+.love-footer h2 {
+    font-size: 3rem;
+    margin-bottom: 15px;
+    color: #2C3E50;
+    position: relative;
+    z-index: 2;
+}
+
+.love-footer p {
+    font-size: 1.2rem;
+    color: #5D6D7E;
+    position: relative;
+    z-index: 2;
+}
+
+/* corazones flotando */
+.footer-hearts::before,
+.footer-hearts::after {
+    content: "❤️ ❤️ ✨ 🌸 🌸";
+    position: absolute;
+    width: 100%;
+    left: 0;
+    font-size: 2rem;
+    opacity: 0.15;
+    animation: floatHearts 12s linear infinite;
+}
+
+.footer-hearts::after {
+    top: 50px;
+    animation-delay: 6s;
+}
+
+@keyframes floatHearts {
+    from {
+        transform: translateY(100px);
+    }
+
+    to {
+        transform: translateY(-250px);
+    }
+}

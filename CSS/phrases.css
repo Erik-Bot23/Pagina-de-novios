@@ -1,0 +1,11 @@
+.phrase-card {
+    text-align: center;
+    background: linear-gradient(to right, #5DADE2, #AED6F1);
+    color: white;
+}
+
+#phrase {
+    font-size: 28px;
+    font-style: italic;
+    margin-top: 20px;
+}
