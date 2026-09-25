@@ -1,10 +1,20 @@
+/* ============================================================
+   scroll.css — ANIMACIÓN DE APARICIÓN (SCROLL REVEAL)
+   ------------------------------------------------------------
+   Reglas que trabajan con JS/scroll.js:
+   - .fade      = estado inicial: invisible y desplazada 30px abajo.
+   - .fade.show = estado final (la agrega JavaScript): visible y en su sitio.
+   La "transición" es lo que hace que el cambio sea SMOOTH
+   (en lugar de un corte brusco).
+   ============================================================ */
+
 .fade {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: all 1s ease;
+  opacity: 0;                 /* 0 = invisible */
+  transform: translateY(30px);/* empieza 30 píxeles más abajo */
+  transition: all 1s ease;    /* anima TODO durante 1 segundo con suavizado */
 }
 
 .fade.show {
-  opacity: 1;
-  transform: translateY(0);
+  opacity: 1;                 /* 1 = totalmente visible */
+  transform: translateY(0);   /* regresa a su posición original */
 }

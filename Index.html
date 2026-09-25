@@ -1,17 +1,55 @@
 <!DOCTYPE html>
+<!--
+  ============================================================
+  MI YANET - "Nuestra historia"
+  Página romántica de una sola vista (one-page) para Erik y Yanet.
+  Estructura de la página, de arriba hacia abajo:
+    1. Música de fondo (audio en loop)
+    2. Hero (portada con foto e iniciales)
+    3. Frases que cambian solas
+    4. Nuestra historia (texto)
+    5. Momentos importantes (carrusel infinito)
+    6. Álbum (libro con fotos)
+    7. Quiz interactivo (modal)
+    8. Footer con corazones flotantes
+  Todo el comportamiento dinámico se maneja desde JS/main.js
+  (que importa los demás módulos en JS/).
+  ============================================================
+-->
 <html lang="es">
 <head>
   <meta charset="UTF-8">
+  <!--
+    viewport: clave para que el sitio se vea bien en celulares.
+    Sin esta etiqueta, el navegador "acerca el zoom" y el diseño se rompe.
+  -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Nuestra historia ❤️</title>
-  <link rel="stylesheet" href="css/main.css">
+
+  <!--
+    IMPORTANTE: las rutas distinguen mayúsculas/minúsculas en servidores
+    Linux (ej. GitHub Pages). Por eso apuntan exacto a las carpetas CSS/ y JS/.
+  -->
+  <link rel="stylesheet" href="CSS/main.css">
 </head>
 <body>
-  <!--Musica en loop-->
+
+  <!-- ==========================================================
+       AUDIO DE FONDO
+       El atributo "loop" hace que la canción se repita sin parar.
+       No tiene controles visibles; la música inicia cuando se abre
+       el quiz (controlado desde JS/quiz.js) y suena hasta cerrar la página.
+       ========================================================== -->
   <audio id="bgMusic" loop>
     <source src="Assets/Music/EVERYTHING.mp3" type="audio/mp3">
   </audio>
 
-  <!-- Hero -->
+  <!-- ==========================================================
+       HERO (PORTADA)
+       Ocupa el 100% de la altura de la pantalla (100vh, ver CSS/hero.css).
+       El div .overlay es una capa semi-transparente oscura encima de la foto
+       para que el texto blanco se lea bien.
+       ========================================================== -->
   <header class="hero">
     <div class="overlay">
       <h1>Erik y Yanet</h1>
@@ -19,7 +57,12 @@
     </div>
   </header>
 
-  <!--Frases-->
+  <!-- ==========================================================
+       FRASES
+       Tarjeta .fade que aparece con animación al hacer scroll
+       (JS/scroll.js + CSS/scroll.css).
+       El texto #phrase cambia solo cada 2 segundos (JS/phrases.js).
+       ========================================================== -->
   <section class="section">
     <div class="card fade phrase-card">
       <h2>❤️</h2>
@@ -29,59 +72,75 @@
     </div>
   </section>
 
-  <!-- Historia -->
- <section class="story-section">
-  <div class="story-container">
-    <div class="story-header">
-      <span class="story-heart">❤️</span>
-      <h2>Nuestra historia</h2>
-      <div class="story-line"></div>
-    </div>
+  <!-- ==========================================================
+       NUESTRA HISTORIA
+       Sección estática con el relato de la pareja.
+       Solo estilos (CSS/story.css), no necesita JavaScript.
+       ========================================================== -->
+  <section class="story-section">
+    <div class="story-container">
+      <div class="story-header">
+        <span class="story-heart">❤️</span>
+        <h2>Nuestra historia</h2>
+        <div class="story-line"></div>
+      </div>
 
-    <div class="story-content">
-      <p>
-        Todo comenzó una mañana rumbo al trabajo, para mí iba a ser un día común hasta que te ví y sabía que tenía que hablarte,
-        no podia perder esa oportunidad.
-        Lo que parecía una simple coincidencia poco a poco se convirtió en algo mucho más grande, poco a poco comencé a enamorarme 
-        de ti y tenía que demostrarte que era digno de tu amor.
-        Entre conversaciones, risas y pequeños momentos, comenzamos a construir algo especial.
-        Y día con día quiero seguir demostrandote cuanto te amo y cada día quiero ser mejor hombre para ti.
-      </p>
-      <p>
-        Nustra historia apenas comienza y ya eres una de las mejores cosas que me han pasado, quiero construir una vida a tu lado. ❤️
-      </p>
+      <div class="story-content">
+        <p>
+          Todo comenzó una mañana rumbo al trabajo, para mí iba a ser un día común hasta que te ví y sabía que tenía que hablarte,
+          no podia perder esa oportunidad.
+          Lo que parecía una simple coincidencia poco a poco se convirtió en algo mucho más grande, poco a poco comencé a enamorarme 
+          de ti y tenía que demostrarte que era digno de tu amor.
+          Entre conversaciones, risas y pequeños momentos, comenzamos a construir algo especial.
+          Y día con día quiero seguir demostrandote cuanto te amo y cada día quiero ser mejor hombre para ti.
+        </p>
+        <p>
+          Nustra historia apenas comienza y ya eres una de las mejores cosas que me han pasado, quiero construir una vida a tu lado. ❤️
+        </p>
+      </div>
     </div>
-  </div>
- </section>
+  </section>
 
- <!-- Momentos importantes -->
-<section class="section moments-section">
+  <!-- ==========================================================
+       MOMENTOS IMPORTANTES
+       El div #carousel se llena por JavaScript (JS/moments.js).
+       Es un "marquee" infinito: los momentos se duplican y deslizan
+       con una animación CSS (ver moments.css keyframes scrollGallery).
+       Al pasar el mouse se pausa; al hacer clic se muestra el texto.
+       ========================================================== -->
+  <section class="section moments-section">
     <h2>Momentos importantes</h2>
 
     <div class="moments-wrapper">
-        <div class="moments-carousel" id="carousel"></div>
+      <div class="moments-carousel" id="carousel"></div>
     </div>
-</section>
+  </section>
 
-  <!-- ÁLBUM -->
-<section class="album-section">
-  <h2>Nuestro álbum</h2>
-  <div class="book-container">
+  <!-- ==========================================================
+       ÁLBUM (LIBRO DE FOTOS)
+       Efecto de libro: primero se ve la portada (#bookCover),
+       al presionar "next" la portada se abre y se ve la página
+       (#bookPage) con la foto y su leyenda (JS/album.js + CSS/album.css).
+       Botones: prev (❮) y next (❯).
+       ========================================================== -->
+  <section class="album-section">
+    <h2>Nuestro álbum</h2>
+    <div class="book-container">
 
-    <!--Botón izquierdo-->
-    <button id="prev" class="album-btn">
-        ❮
-    </button>
+      <!--Botón izquierdo-->
+      <button id="prev" class="album-btn">
+          ❮
+      </button>
 
-    <div class="book">
-        <!-- Portada -->
+      <div class="book">
+        <!-- Portada del libro -->
         <div class="book-cover" id="bookCover">
             <h3>Erik & Yanet</h3>
             <span>❤️</span>
             <p>Nuestros recuerdos</p>
         </div>
 
-        <!-- Página -->
+        <!-- Página interior: foto + texto -->
         <div class="book-page" id="bookPage">
             <img id="albumImage" src="" alt="Recuerdo">
 
@@ -91,64 +150,86 @@
                 </p>
             </div>
         </div>
-    </div>
+      </div>
 
-    <!--Botón derecho-->
-    <button id="next" class="album-btn">
-        ❯
-    </button>
-  </div>
-</section>
-
-<!-- RSVP simbólico -->
-<section class="section">
-  <div class="card fade">
-    <h2>💌 Para ti</h2>
-    <p>
-      ¿Qué tanto recuerdas de nuestra historia?
-    </p>
-    <button class="btn" id="openQuizBtn">
-      Comenzar Quiz ❤️
-    </button>
-  </div>
-</section>
-
-<!-- MODAL QUIZ -->
-<div class="quiz-modal" id="quizModal">
-  <div class="quiz-box">
-
-    <!-- cerrar -->
-    <button class="close-quiz" id="closeQuiz">
-      ✕
-    </button>
-
-    <!-- contenido -->
-    <div id="quizContent">
-      <h2 id="quizQuestion"></h2>
-      <div class="quiz-options" id="quizOptions"></div>
-      <p id="quizCounter"></p>
-    </div>
-
-    <!-- resultado -->
-    <div class="quiz-result" id="quizResult">
-      <h2>Resultado ❤️</h2>
-      <p id="scoreText"></p>
-      <button class="btn" id="restartQuiz">
-        Intentar otra vez
+      <!--Botón derecho-->
+      <button id="next" class="album-btn">
+          ❯
       </button>
     </div>
+  </section>
+
+  <!-- ==========================================================
+       QUIZ (RSVP SIMBÓLICO)
+       La tarjeta invita a jugar. El botón #openQuizBtn abre el modal
+       (display flex gracias a .quiz-modal.active) e inicia la música.
+       ========================================================== -->
+  <section class="section">
+    <div class="card fade">
+      <h2>💌 Para ti</h2>
+      <p>
+        ¿Qué tanto recuerdas de nuestra historia?
+      </p>
+      <button class="btn" id="openQuizBtn">
+        Comenzar Quiz ❤️
+      </button>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       MODAL DEL QUIZ
+       Ventana flotante que cubre toda la pantalla (position: fixed,
+       inset: 0). Por defecto está oculta (display: none) y se muestra
+       con la clase .active. Todo el contenido se genera en JS/quiz.js.
+       Secciones:
+         - #quizContent : pregunta + opciones + contador
+         - #quizResult  : pantalla de puntaje final
+       ========================================================== -->
+  <div class="quiz-modal" id="quizModal">
+    <div class="quiz-box">
+
+      <!-- Botón para cerrar el modal -->
+      <button class="close-quiz" id="closeQuiz">
+        ✕
+      </button>
+
+      <!-- Contenido de pregunta (se rellena con JS) -->
+      <div id="quizContent">
+        <h2 id="quizQuestion"></h2>
+        <div class="quiz-options" id="quizOptions"></div>
+        <p id="quizCounter"></p>
+      </div>
+
+      <!-- Resultado final (oculto hasta terminar) -->
+      <div class="quiz-result" id="quizResult">
+        <h2>Resultado ❤️</h2>
+        <p id="scoreText"></p>
+        <button class="btn" id="restartQuiz">
+          Intentar otra vez
+        </button>
+      </div>
+    </div>
   </div>
-</div>
 
-<!--Footer-->
-<footer class="love-footer">
-  <div class="footer-hearts"></div>
-  <h2>Erik y Yanet ❤️</h2>
-  <p>
-    "Gracias por formar parte de mi historia favorita."
-  </p>
-</footer>
+  <!-- ==========================================================
+       FOOTER
+       Pie con corazones flotantes animados (ver CSS/footer.css,
+       pseudo-elementos ::before / ::after y keyframes floatHearts).
+       ========================================================== -->
+  <footer class="love-footer">
+    <div class="footer-hearts"></div>
+    <h2>Erik y Yanet ❤️</h2>
+    <p>
+      "Gracias por formar parte de mi historia favorita."
+    </p>
+  </footer>
 
-<script type="module" src="js/main.js"></script>
+  <!-- ==========================================================
+       SCRIPT PRINCIPAL
+       type="module" permite usar import/export entre archivos JS.
+       main.js enciende los módulos cuando el HTML terminó de cargarse
+       (evento DOMContentLoaded).
+       ========================================================== -->
+  <script type="module" src="JS/main.js"></script>
 </body>
 </html>

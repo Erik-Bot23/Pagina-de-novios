@@ -1,5 +1,23 @@
+// ============================================================
+// quiz.js — QUIZ INTERACTIVO + MÚSICA DE FONDO
+// ------------------------------------------------------------
+// Controla el modal (.quiz-modal) que aparece con el botón
+// "Comenzar Quiz". También es el encargado de iniciar la música,
+// porque play() dentro del clic es considerado una "acción del
+// usuario" (los navegadores bloquean el audio automático).
+//
+// Flujo:
+//   1) Se abre el modal y se carga la primera pregunta.
+//   2) Al responder se suma al marcador si es correcta.
+//   3) Cuando se acaban las preguntas se muestra el resultado.
+// ============================================================
 export function initQuiz(){
 
+    // ------------------------------------------------
+    // 1) DATOS: banco de preguntas
+    //    Cada pregunta = texto + 3 opciones + índice correcto
+    //    (correct: 0 = primera opción, 1 = segunda, 2 = tercera)
+    // ------------------------------------------------
     const questions = [
         {
             question: "¿Dónde fue nuestra primera cita? ❤️",
@@ -12,7 +30,7 @@ export function initQuiz(){
             correct: 0
         },
         {
-            question: "¿Qué animal encontramos en nuestra visista al río?",
+            question: "¿Qué animal encontramos en nuestra visita al río?",
             options: ["Ranas", "Ambos", "Cangrejos"],
             correct: 1
         },
@@ -37,12 +55,12 @@ export function initQuiz(){
             correct: 0
         },
         {
-            question: "¿Cuál son los nombres de la los padres y hermana de Erik?",
+            question: "¿Cuáles son los nombres de los padres y la hermana de Erik?",
             options: ["Albino, Sabina, Eva", "Albino, Sabina, Anais", "Juan, Elena, Anais"],
             correct: 1
         },
         {
-            question: "¿Qué fue lo que pasó cuando fuimos al campo de flores",
+            question: "¿Qué fue lo que pasó cuando fuimos al campo de flores?",
             options: ["Llovió toda la tarde", "Te lastimaste el pie", "Estaba cerrado"],
             correct: 1
         },
@@ -52,7 +70,7 @@ export function initQuiz(){
             correct: 1
         },
         {
-            question: "¿Cuál fue el rpimer regalo que te di?",
+            question: "¿Cuál fue el primer regalo que te di?",
             options: ["Camisa", "Aretes", "Flores"],
             correct: 2
         },
@@ -63,41 +81,61 @@ export function initQuiz(){
         }
     ];
 
-    const modal = document.getElementById("quizModal");
-    const music = document.getElementById("bgMusic");
-    const openBtn = document.getElementById("openQuizBtn");
-    const closeBtn = document.getElementById("closeQuiz");
-    const questionText = document.getElementById("quizQuestion");
-    const optionsContainer = document.getElementById("quizOptions");
-    const counter = document.getElementById("quizCounter");
-    const resultBox = document.getElementById("quizResult");
-    const quizContent = document.getElementById("quizContent");
-    const scoreText = document.getElementById("scoreText");
-    const restartBtn = document.getElementById("restartQuiz");
+    // ------------------------------------------------
+    // 2) Referencias a todos los elementos del modal.
+    //    Se buscan una sola vez al iniciar.
+    // ------------------------------------------------
+    const modal = document.getElementById("quizModal");      // fondo del modal
+    const music = document.getElementById("bgMusic");        // <audio> de la canción
+    const openBtn = document.getElementById("openQuizBtn");  // botón "Comenzar Quiz"
+    const closeBtn = document.getElementById("closeQuiz");   // botón ✕
+    const questionText = document.getElementById("quizQuestion"); // <h2> pregunta
+    const optionsContainer = document.getElementById("quizOptions"); // contenedor de botones
+    const counter = document.getElementById("quizCounter");  // "Pregunta X de Y"
+    const resultBox = document.getElementById("quizResult"); // pantalla de resultado
+    const quizContent = document.getElementById("quizContent"); // pantalla de pregunta
+    const scoreText = document.getElementById("scoreText");  // texto de puntaje
+    const restartBtn = document.getElementById("restartQuiz"); // botón reiniciar
 
-    let currentQuestion = 0;
-    let score = 0;
+    // ------------------------------------------------
+    // 3) ESTADO del juego
+    // ------------------------------------------------
+    let currentQuestion = 0; // ¿en qué pregunta vamos?
+    let score = 0;           // respuestas correctas acumuladas
 
+    // ------------------------------------------------
+    // 4) loadQuestion(): pinta la pregunta actual en el modal
+    //    - Escribe el texto de la pregunta
+    //    - Actualiza el contador ("Pregunta 3 de 12")
+    //    - Limpia las opciones anteriores (innerHTML = "")
+    //    - Crea un <button> por cada opción y le asigna su
+    //      comportamiento onclick (responder)
+    // ------------------------------------------------
     function loadQuestion(){
         const q = questions[currentQuestion];
         questionText.innerText = q.question;
         counter.innerText = `Pregunta ${currentQuestion + 1} de ${questions.length}`;
         optionsContainer.innerHTML = "";
 
+        // Por cada opción se crea su botón
         q.options.forEach((option, index) => {
             const button = document.createElement("button");
-            button.classList.add("quiz-option");
+            button.classList.add("quiz-option"); // estilos de quiz.css
             button.innerText = option;
 
+            // Al hacer clic en una opción:
             button.onclick = () => {
+                // Si el índice de la opción coincide con el correcto → +1
                 if(index === q.correct){
                     score++;
                 }
 
+                // Avanzar a la siguiente pregunta
                 currentQuestion++;
 
+                // Si quedan preguntas, cargar la siguiente;
+                // si no, mostrar el resultado final.
                 if(currentQuestion < questions.length){
-
                     loadQuestion();
                 }
                 else{
@@ -108,33 +146,43 @@ export function initQuiz(){
         });
     }
 
+    // ------------------------------------------------
+    // 5) showResult(): oculta las preguntas y muestra el puntaje
+    // ------------------------------------------------
     function showResult(){
-        quizContent.style.display = "none";
-        resultBox.classList.add("active");
+        quizContent.style.display = "none"; // esconder preguntas
+        resultBox.classList.add("active");  // mostrar pantalla final (.quiz-result.active)
         scoreText.innerText = `Obtuviste ${score} de ${questions.length} respuestas correctas ❤️`;
     }
 
+    // ------------------------------------------------
+    // 6) resetQuiz(): reinicia el juego (usado al abrir y al reintentar)
+    // ------------------------------------------------
     function resetQuiz(){
         currentQuestion = 0;
         score = 0;
-        quizContent.style.display = "block";
-        resultBox.classList.remove("active");
-        loadQuestion();
+        quizContent.style.display = "block"; // volver a mostrar preguntas
+        resultBox.classList.remove("active");// ocultar resultado
+        loadQuestion();                       // empezar en la pregunta 1
     }
 
+    // ------------------------------------------------
+    // 7) EVENTOS DE LOS BOTONES
+    // ------------------------------------------------
+    // Abrir el quiz (y empezar/AUTORIZAR la música).
+    // Como play() ocurre dentro de un clic, el navegador lo permite.
     openBtn.addEventListener("click", () => {
-        //Reproducir música
-        music.play();
-
-        //Otras acciones
-        modal.classList.add("active");
-        resetQuiz();
+        music.play();            // Reproducir música
+        modal.classList.add("active"); // mostrar modal
+        resetQuiz();             // empezar de cero
     });
 
+    // Cerrar el modal (la música sigue si ya fue iniciada)
     closeBtn.addEventListener("click", () => {
         modal.classList.remove("active");
     });
 
+    // Botón "Intentar otra vez" → reiniciar sin cerrar el modal
     restartBtn.addEventListener("click", () => {
         resetQuiz();
     });

@@ -1,6 +1,18 @@
-/* HERO */
+/* ============================================================
+   hero.css — HERO / PORTADA DE PANTALLA COMPLETA
+   ------------------------------------------------------------
+   La primera sección que el usuario ve: una foto que cubre
+   toda la ventana con el título encima.
+   ============================================================ */
+
 .hero {
-  height: 100vh;
-  background: url('../assets/Images/12.jpeg') center/cover no-repeat;
-  position: relative;
+  height: 100vh; /* 100% de la ALTURA de la ventana (vh = viewport height) */
+  /* Fondo = imagen centrada, cubriendo todo, sin repetirse:
+     - center   → centra la imagen
+     - /cover   → escala la imagen para llenar todo (recortando si hace falta)
+     - no-repeat → que no se repita en mosaico
+     La ruta es relativa a ESTE archivo (CSS/hero.css), por eso
+     sube un nivel con ../ para llegar a Assets/Images/.  */
+  background: url('../Assets/Images/12.jpeg') center/cover no-repeat;
+  position: relative; /* base para que .overlay se posicione encima */
 }

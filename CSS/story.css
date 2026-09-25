@@ -1,79 +1,98 @@
-.story-section{
-    padding: 120px 20px;
+/* ============================================================
+   story.css — SECCIÓN "NUESTRA HISTORIA"
+   ------------------------------------------------------------
+   Tarjeta de cristal (blur) con el relato de la pareja.
+   No depende de JavaScript.
+   ============================================================ */
+
+/* ---------- CONTENEDOR EXTERNO ---------- */
+.story-section {
+    padding: 120px 20px;      /* mucho aire: sección amplia */
     display: flex;
-    justify-content: center;
-    background: linear-gradient(to button, #f4f6f7, #eef2f3);
+    justify-content: center;  /* centra la tarjeta interna */
+    /* Fondo con degradado vertical (muy sutil).
+       Nota: la dirección correcta es "to bottom" (de arriba
+       hacia abajo). Antes decía "to button" y no se aplicaba. */
+    background: linear-gradient(to bottom, #f4f6f7, #eef2f3);
 }
+
+/* ---------- TARJETA INTERNA ---------- */
 .story-container {
     width: 100%;
-    max-width: 850px;
-    background: rgba(255,255,255,0.75);
-    backdrop-filter: blur(12px);
+    max-width: 850px;                    /* máximo ancho en pantallas grandes */
+    background: rgba(255,255,255,0.75); /* blanco al 75% = efecto translúcido */
+    backdrop-filter: blur(12px);         /* desenfoca lo que está DETRÁS → cristal */
     border-radius: 35px;
     padding: 70px 50px;
     box-shadow: 0 25px 60px rgba(0,0,0,0.08);
-    position: relative;
-    overflow: hidden;
+    position: relative;                  /* referencia para el brillo ::before */
+    overflow: hidden;                    /* evita que el brillo se salga de la tarjeta */
 }
 
-/* brillo decorativo */
+/* ---------- BRILLO DECORATIVO ---------- */
+/* Pseudo-elemento ::before: un círculo azul claro en la esquina
+   superior derecha, fuera de la tarjeta (top/right negativos). */
 .story-container::before {
-    content: "";
+    content: "";                          /* obligatorio para que exista */
     position: absolute;
     width: 300px;
     height: 300px;
-    background: rgba(93, 173, 226, 0.12);
+    background: rgba(93, 173, 226, 0.12); /* azul muy transparente */
     border-radius: 50%;
-    top: -120px;
-    right: -120px;
+    top: -120px;                          /* sobresale hacia arriba */
+    right: -120px;                        /* y hacia la derecha */
 }
 
+/* ---------- ENCABEZADO DE LA TARJETA ---------- */
 .story-header {
     text-align: center;
     margin-bottom: 50px;
     position: relative;
-    z-index: 2;
+    z-index: 2;   /* se coloca POR ENCIMA del brillo ::before */
 }
 
+/* El corazón grande que introduce la sección */
 .story-heart {
     font-size: 2.5rem;
-    display: block;
+    display: block;  /* ocupa su propia línea */
     margin-bottom: 15px;
 }
 
 .story-header h2 {
     font-size: 3rem;
     margin-bottom: 20px;
-    color: #2C3E50;
+    color: #2C3E50; /* azul grisáceo oscuro */
 }
 
+/* Línea decorativa bajo el título */
 .story-line {
     width: 120px;
     height: 4px;
-    margin: auto;
+    margin: auto;        /* centrado horizontal */
     border-radius: 10px;
-    background: #5DADE2;
+    background: #5DADE2; /* azul del tema */
 }
 
+/* ---------- CONTENIDO (PÁRRAFOS) ---------- */
 .story-content {
     position: relative;
-    z-index: 2;
+    z-index: 2;                    /* encima del brillo ::before */
     display: flex;
-    flex-direction: column;
-    gap: 30px;
+    flex-direction: column;        /* apila los <p> uno debajo del otro */
+    gap: 30px;                     /* separación entre párrafos */
 }
 
 .story-content p {
     font-size: 1.15rem;
-    line-height: 2;
+    line-height: 2;                /* interlineado amplio = más fácil de leer */
     color: #34495E;
-    text-align: justify;
+    text-align: justify;           /* texto justificado a ambos lados */
 }
 
-/* móvil */
+/* ---------- MÓVIL ---------- */
 @media (max-width: 768px) {
     .story-container {
-        padding: 50px 25px;
+        padding: 50px 25px;        /* menos relleno en pantallas pequeñas */
     }
 
     .story-header h2 {
@@ -82,6 +101,6 @@
 
     .story-content p {
         font-size: 1rem;
-        text-align: left;
+        text-align: left;          /* en móvil se lee mejor sin justificar */
     }
 }

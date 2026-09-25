@@ -1,9 +1,20 @@
-@import 'general.css';
-@import 'scroll.css';
-@import 'hero.css';
-@import 'moments.css';
-@import 'album.css';
-@import 'phrases.css';
-@import 'story.css';
-@import 'footer.css';
-@import 'quiz.css';
+/* ============================================================
+   main.css — HOJA DE ESTILOS PRINCIPAL
+   ------------------------------------------------------------
+   Este archivo NO define estilos propios: solo importa todos
+   los demás .css del proyecto usando @import.
+   El navegador escribe un solo archivo CSS "punteado" y todas
+   las reglas se aplican en conjunto.
+
+   Orden de carga (arriba = primero, abajo = último):
+   al final gana la regla de mayor "especificidad" o igualdad.
+   ============================================================ */
+@import 'general.css';   /* Reset base, botones, tarjetas, secciones */
+@import 'scroll.css';    /* Animación .fade (aparecer al hacer scroll) */
+@import 'hero.css';       /* Portada de pantalla completa */
+@import 'moments.css';   /* Carrusel infinito de momentos */
+@import 'album.css';     /* Álbum con efecto libro */
+@import 'phrases.css';   /* Tarjeta de frases */
+@import 'story.css';     /* Sección "Nuestra historia" */
+@import 'footer.css';    /* Pie con corazones flotantes */
+@import 'quiz.css';      /* Modal del quiz */

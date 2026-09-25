@@ -1,8 +1,20 @@
+/* ============================================================
+   general.css — ESTILOS BASE / GLOBALES
+   ------------------------------------------------------------
+   Reglas generales que se aplican a toda la página: fondo,
+   tipografía, botones reutilizables y tarjetas.
+   ============================================================ */
+
+/* ---------- CUERPO DE LA PÁGINA ---------- */
 body {
-    margin: 0;
+    margin: 0; /* quita el margen por defecto del navegador */
 
-    font-family: 'Segoe UI', sans-serif;
+    font-family: 'Segoe UI', sans-serif; /* tipografía legible sin importar fuentes */
 
+    /* Fondo decorativo en 3 capas (una encima de otra):
+       1) radial-gradient esquina sup. izq. rojo suave
+       2) radial-gradient esquina inf. der. azul suave
+       3) linear-gradient vertical: rosa → casi blanco → azul   */
     background:
         radial-gradient(circle at top left, rgba(231, 8, 45, 0.25), transparent 25%),
         radial-gradient(circle at bottom right, rgba(2, 147, 244, 0.18), transparent 30%),
@@ -13,60 +25,64 @@ body {
             #c5d8f0 100%
         );
 
+    /* Evita la barra horizontal cuando algún elemento se sale */
     overflow-x: hidden;
 }
 
+/* ---------- CAPA OSCURA DEL HERO ---------- */
 .overlay {
-  background: rgba(0,0,0,0.4);
+  background: rgba(0,0,0,0.4); /* 40% de opacidad negra para que el texto blanco destaque */
   color: white;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  height: 100%;                /* ocupa todo el alto del hero */
+  display: flex;               /* activa flexbox para centrar el contenido */
+  flex-direction: column;      /* apila el <h1> y el <p> verticalmente */
+  justify-content: center;     /* centra verticalmente */
+  align-items: center;         /* centra horizontalmente */
 }
 
+/* ---------- EVENTO (para la línea de tiempo en desuso) ---------- */
 .event {
   margin-bottom: 20px;
 }
 
+/* ---------- BOTONES POR DEFECTO ---------- */
 button {
-  background: #5DADE2;
+  background: #5DADE2;  /* azul principal del tema */
   border: none;
   padding: 10px 15px;
   color: white;
-  border-radius: 10px;
+  border-radius: 10px;  /* esquinas redondeadas */
   cursor: pointer;
 }
 
-/* BOTÓN */
+/* ---------- BOTÓN REUTILIZABLE .btn ---------- */
 .btn {
-  display: block;
-  margin: 20px auto 0;
+  display: block;         /* ocupa su propia línea */
+  margin: 20px auto 0;    /* centrado: 20px arriba, auto a los lados */
   font-size: 18px;
 }
 
-/* SECCIONES */
+/* ---------- SECCIONES .section ---------- */
 .section {
-  padding: 80px 20px;
-  display: flex;
-  justify-content: center;
+  padding: 80px 20px;     /* aire arriba/abajo y a los lados */
+  display: flex;          /* flexbox para poder centrar la tarjeta interna */
+  justify-content: center;/* centra la tarjeta horizontalmente */
 }
 
-.section h2{
+.section h2 {
   text-align: center;
 }
 
-.section p{
+.section p {
   text-align: center;
 }
 
-/* TARJETAS */
+/* ---------- TARJETAS .card ---------- */
 .card {
   background: white;
-  width: 80%;
-  max-width: 900px;
+  width: 80%;             /* 80% del ancho del padre */
+  max-width: 900px;       /* pero nunca más ancha que 900px */
   padding: 40px;
   border-radius: 15px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1); /* sombra suave = efecto "flotante" */
 }

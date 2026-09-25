@@ -1,236 +1,265 @@
+// ============================================================
+// album.js — ÁLBUM DE FOTOS CON EFECTO LIBRO
+// ------------------------------------------------------------
+// Lógica del "libro" que vemos en la sección Nuestro álbum.
+// - Arreglo `album`: lista de fotos (img) con su leyenda (text).
+// - `current`: índice de la foto que se está mostrando.
+// - `opened`: flag que dice si la portada ya se abrió.
+//
+// NOTA: la descripción solo explica cómo funciona, no cambia
+// el comportamiento.
+// ============================================================
 export function initAlbum(){
+  // -------------------------------
+  // 1) DATOS: lista de recuerdos
+  //    Cada objeto = una foto + el texto que la acompaña.
+  // -------------------------------
   const album = [
       {
-          img: "assets/images/1.jpeg",
+          img: "Assets/Images/1.jpeg",
           text: "Primer salida a Oaxaca"
       },
       {
-          img: "assets/images/2.jpeg",
+          img: "Assets/Images/2.jpeg",
           text: "Primer salida a Oaxaca"
       },
       {
-          img: "assets/images/3.jpeg",
+          img: "Assets/Images/3.jpeg",
           text: "Primer salida a Oaxaca"
       },
       {
-          img: "assets/images/4.jpeg",
+          img: "Assets/Images/4.jpeg",
           text: "Nuestro inicio como novios"
       },
       {
-          img: "assets/images/6.jpeg",
+          img: "Assets/Images/6.jpeg",
           text: "Nuestro inicio como novios"
       },
       {
-          img: "assets/images/7.jpeg",
+          img: "Assets/Images/7.jpeg",
           text: "Día de muertos en Oaxaca"
       },
       {
-          img: "assets/images/8.jpeg",
+          img: "Assets/Images/8.jpeg",
           text: "Día de muertos en Oaxaca"
       },
       {
-          img: "assets/images/9.jpeg",
+          img: "Assets/Images/9.jpeg",
           text: "Día de muertos en Oaxaca"
       },
       {
-          img: "assets/images/11.jpeg",
+          img: "Assets/Images/11.jpeg",
           text: "Salida al río"
       },
       {
-          img: "assets/images/13.jpeg",
+          img: "Assets/Images/13.jpeg",
           text: "Salida al río"
       },
       {
-          img: "assets/images/14.jpeg",
+          img: "Assets/Images/14.jpeg",
           text: "Salida a Oaxaca"
       },
       {
-          img: "assets/images/15.jpeg",
+          img: "Assets/Images/15.jpeg",
           text: "Salida a Oaxaca"
       },
       {
-          img: "assets/images/16.jpeg",
+          img: "Assets/Images/16.jpeg",
           text: "Cena de DOIX"
       },
       {
-          img: "assets/images/18.jpeg",
+          img: "Assets/Images/18.jpeg",
           text: "Foto de Yan"
       },
       {
-          img: "assets/images/20.jpeg",
+          img: "Assets/Images/20.jpeg",
           text: "Salida a San Bernardo"
       },
       {
-          img: "assets/images/21.jpeg",
+          img: "Assets/Images/21.jpeg",
           text: "Salida a San Bernardo"
       },
       {
-          img: "assets/images/22.jpeg",
+          img: "Assets/Images/22.jpeg",
           text: "Salida a San Bernardo"
       },
       {
-          img: "assets/images/28.jpeg",
+          img: "Assets/Images/28.jpeg",
           text: "Salida a San Bernardo"
       },
       {
-          img: "assets/images/29.jpeg",
+          img: "Assets/Images/29.jpeg",
           text: "Salida a San Bernardo"
       },
       {
-          img: "assets/images/30.jpeg",
+          img: "Assets/Images/30.jpeg",
           text: "Salida a San Bernardo"
       },
       {
-          img: "assets/images/23.jpeg",
+          img: "Assets/Images/23.jpeg",
           text: "San Valentin"
       },
       {
-          img: "assets/images/26.jpeg",
+          img: "Assets/Images/26.jpeg",
           text: "San Valentin"
       },
       {
-          img: "assets/images/24.jpeg",
+          img: "Assets/Images/24.jpeg",
           text: "Aniversario en los Honguitos"
       },
       {
-          img: "assets/images/25.jpeg",
+          img: "Assets/Images/25.jpeg",
           text: "Aniversario en los Honguitos"
       },
       {
-          img: "assets/images/31.jpeg",
+          img: "Assets/Images/31.jpeg",
           text: "Fotos de Yan"
       },
       {
-          img: "assets/images/32.jpeg",
+          img: "Assets/Images/32.jpeg",
           text: "Fotos de Yan"
       },
       {
-          img: "assets/images/33.jpeg",
+          img: "Assets/Images/33.jpeg",
           text: "Fotos de Yan"
       },
       {
-          img: "assets/images/34.jpeg",
+          img: "Assets/Images/34.jpeg",
           text: "Biblioteca Vasconcelos"
       },
       {
-          img: "assets/images/35.jpeg",
+          img: "Assets/Images/35.jpeg",
           text: "Biblioteca Vasconcelos"
       },
       {
-          img: "assets/images/41.jpeg",
+          img: "Assets/Images/41.jpeg",
           text: "Biblioteca Vasconcelos"
       },
       {
-          img: "assets/images/47.jpeg",
+          img: "Assets/Images/47.jpeg",
           text: "Biblioteca Vasconcelos"
       },
       {
-          img: "assets/images/49.jpeg",
+          img: "Assets/Images/49.jpeg",
           text: "Biblioteca Vasconcelos"
       },
       {
-          img: "assets/images/37.jpeg",
+          img: "Assets/Images/37.jpeg",
           text: "Acuario Michin"
       },
       {
-          img: "assets/images/38.jpeg",
+          img: "Assets/Images/38.jpeg",
           text: "Acuario Michin"
       },
       {
-          img: "assets/images/40.jpeg",
+          img: "Assets/Images/40.jpeg",
           text: "Acuario Michin"
       },
       {
-          img: "assets/images/44.jpeg",
+          img: "Assets/Images/44.jpeg",
           text: "Acuario Michin"
       },
       {
-          img: "assets/images/45.jpeg",
+          img: "Assets/Images/45.jpeg",
           text: "Acuario Michin"
       },
       {
-          img: "assets/images/46.jpeg",
+          img: "Assets/Images/46.jpeg",
           text: "Acuario Michin"
       },
       {
-          img: "assets/images/48.jpeg",
+          img: "Assets/Images/48.jpeg",
           text: "Acuario Michin"
       },
       {
-          img: "assets/images/54.jpeg",
+          img: "Assets/Images/54.jpeg",
           text: "Bellas artes"
       },
       {
-          img: "assets/images/55.jpeg",
+          img: "Assets/Images/55.jpeg",
           text: "Bellas artes"
       },
       {
-          img: "assets/images/56.jpeg",
+          img: "Assets/Images/56.jpeg",
           text: "Bellas artes"
       },
       {
-          img: "assets/images/57.jpeg",
+          img: "Assets/Images/57.jpeg",
           text: "Bellas artes"
       },
       {
-          img: "assets/images/50.jpeg",
+          img: "Assets/Images/50.jpeg",
           text: "Zocalo de CDMX"
       },
       {
-          img: "assets/images/51.jpeg",
+          img: "Assets/Images/51.jpeg",
           text: "Zocalo de CDMX"
       },
       {
-          img: "assets/images/52.jpeg",
+          img: "Assets/Images/52.jpeg",
           text: "Zocalo de CDMX"
       },
       {
-          img: "assets/images/53.jpeg",
+          img: "Assets/Images/53.jpeg",
           text: "Zocalo de CDMX"
       },
       {
-          img: "assets/images/42.jpeg",
+          img: "Assets/Images/42.jpeg",
           text: "Aniversario en los Horcones"
       },
       {
-          img: "assets/images/43.jpeg",
+          img: "Assets/Images/43.jpeg",
           text: "Aniversario en los Horcones"
       },
       {
-          img: "assets/images/59.jpeg",
+          img: "Assets/Images/59.jpeg",
           text: "Campo de flores Oaxaca"
       },
       {
-          img: "assets/images/60.jpeg",
+          img: "Assets/Images/60.jpeg",
           text: "Campo de flores Oaxaca"
       },
       {
-          img: "assets/images/63.jpeg",
+          img: "Assets/Images/63.jpeg",
           text: "Campo de flores Oaxaca"
       },
       {
-          img: "assets/images/67.jpeg",
+          img: "Assets/Images/67.jpeg",
           text: "Campo de flores Oaxaca"
       },
       {
-          img: "assets/images/69.jpeg",
+          img: "Assets/Images/69.jpeg",
           text: "Campo de flores Oaxaca"
       },
       {
-          img: "assets/images/70.jpeg",
+          img: "Assets/Images/70.jpeg",
           text: "Campo de flores Oaxaca"
       }
   ];
 
-  let current = 0;
+  // -------------------------------
+  // 2) ESTADO de la navegación
+  // -------------------------------
+  let current = 0;     // Índice de la foto actual
+  let opened = false;  // ¿La portada del libro ya está abierta?
 
-  const img = document.getElementById("albumImage");
-  const text = document.getElementById("albumText");
-  const page = document.getElementById("bookPage");
-  const cover = document.getElementById("bookCover");
+  // -------------------------------
+  // 3) Referencias a los elementos del DOM
+  //    Se buscan UNA sola vez (no cada vez que se renderiza),
+  //    que es más eficiente y es la práctica recomendada.
+  // -------------------------------
+  const img = document.getElementById("albumImage");  // <img> de la foto
+  const text = document.getElementById("albumText");  // <p> de la leyenda
+  const page = document.getElementById("bookPage");   // página interior
+  const cover = document.getElementById("bookCover"); // portada
 
-  let opened = false;
-
+  // -------------------------------
+  // 4) render(): muestra la foto que toca
+  //    - Agrega la clase .flip → efecto de "pasar la hoja" (rotateY)
+  //    - Espera 400ms (duración de la animación) con setTimeout
+  //    - Cambia el src y el texto
+  //    - Quita .flip para que la página vuelva a su posición
+  // -------------------------------
   function render(){
       page.classList.add("flip");
       setTimeout(() => {
@@ -240,9 +269,16 @@ export function initAlbum(){
       }, 400);
   }
 
+  // -------------------------------
+  // 5) Botón siguiente (❯)
+  //    - Si la portada NO está abierta: abre la portada y termina.
+  //    - Si ya está abierta: avanza al siguiente recuerdo.
+  //    `(current + 1) % album.length` = incremento circular:
+  //    al llegar al final vuelve a 0 (como una ruleta).
+  // -------------------------------
   document.getElementById("next").onclick = () => {
       if(!opened){
-          cover.classList.add("open");
+          cover.classList.add("open"); // anima rotación de la portada
           opened = true;
           return;
       }
@@ -250,12 +286,23 @@ export function initAlbum(){
       render();
   };
 
+  // -------------------------------
+  // 6) Botón anterior (❮)
+  //    - Si la portada no está abierta, no hace nada.
+  //    - Retrocede de forma circular:
+  //      `(current - 1 + album.length) % album.length` evita
+  //      números negativos (si current=0, devuelve el último).
+  // -------------------------------
   document.getElementById("prev").onclick = () => {
       if(!opened) return;
       current = (current - 1 + album.length) % album.length;
       render();
   };
 
+  // -------------------------------
+  // 7) Clic sobre la portada: la abre o la cierra
+  //    Alterna la clase .open usando el flag `opened`.
+  // -------------------------------
   cover.addEventListener("click", () => {
     if(opened){
       cover.classList.remove("open");
@@ -266,5 +313,9 @@ export function initAlbum(){
     }
   });
 
+  // -------------------------------
+  // 8) Carga inicial: muestra el primer recuerdo
+  //    (que queda oculto detrás de la portada hasta abrir).
+  // -------------------------------
   render();
 }

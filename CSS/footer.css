@@ -1,8 +1,17 @@
-.love-footer{
-    position: relative;
-    overflow: hidden;
+/* ============================================================
+   footer.css — PIE DE PÁGINA CON CORAZONES FLOTANTES
+   ------------------------------------------------------------
+   Uso de pseudo-elementos ::before y ::after para dibujar la
+   fila de corazones sin necesidad de escribir HTML extra.
+   ============================================================ */
+
+/* ---------- FOOTER ---------- */
+.love-footer {
+    position: relative;   /* referencia para posicionar los corazones */
+    overflow: hidden;     /* los corazones no deben salirse del footer */
     padding: 100px 20px;
     text-align: center;
+    /* Degradado vertical transparente → rosa muy suave */
     background: linear-gradient(
         180deg,
         rgba(255,255,255,0),
@@ -10,12 +19,13 @@
     );
     margin-top: 100px;
 }
+
 .love-footer h2 {
     font-size: 3rem;
     margin-bottom: 15px;
     color: #2C3E50;
     position: relative;
-    z-index: 2;
+    z-index: 2;  /* el título queda por encima de los corazones */
 }
 
 .love-footer p {
@@ -25,28 +35,34 @@
     z-index: 2;
 }
 
-/* corazones flotando */
+/* ---------- CORAZONES FLOTANTES ---------- */
+/* .footer-hearts está vacío en el HTML: todo lo que se ve sale
+   de aquí. Cada pseudo-elemento muestra la MISMA fila de
+   emojis, pero se animan desfasados (animation-delay de 6s en ::after). */
 .footer-hearts::before,
 .footer-hearts::after {
-    content: "❤️ ❤️ ✨ 🌸 🌸";
+    content: "❤️ ❤️ ✨ 🌸 🌸"; /* el texto decorativo */
     position: absolute;
-    width: 100%;
+    width: 100%;               /* ocupan todo el ancho */
     left: 0;
     font-size: 2rem;
-    opacity: 0.15;
-    animation: floatHearts 12s linear infinite;
+    opacity: 0.15;             /* muy tenues (decorativos) */
+    animation: floatHearts 12s linear infinite; /* suben y suben sin parar */
 }
 
+/* El segundo grupo empieza 50px más abajo y con 6s de retraso:
+   así los dos grupos nunca se amontonan en la misma posición. */
 .footer-hearts::after {
     top: 50px;
     animation-delay: 6s;
 }
 
+/* Animación: los emojis viajan de +100px a -250px (de abajo hacia arriba).
+   Al reiniciarse vuelven a aparecer abajo, como subiendo en loop. */
 @keyframes floatHearts {
     from {
         transform: translateY(100px);
     }
-
     to {
         transform: translateY(-250px);
     }

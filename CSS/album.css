@@ -1,3 +1,15 @@
+/* ============================================================
+   album.css — ÁLBUM CON EFECTO LIBRO
+   ------------------------------------------------------------
+   Trabaja con JS/album.js.
+   El "libro" tiene dos piezas superpuestas:
+     - .book-cover → la portada (con el título)
+     - .book-page  → la página interior (foto + leyenda)
+   Al abrir, la portada gira hacia la izquierda (rotateY -160°)
+   con un efecto 3D gracias a `perspective`.
+   ============================================================ */
+
+/* ---------- SECCIÓN ---------- */
 .album-section {
     padding: 120px 20px;
     text-align: center;
@@ -9,27 +21,28 @@
     color: #2C3E50;
 }
 
-/* CONTENEDOR */
+/* ---------- CONTENEDOR (botón ❮ + libro + botón ❯) ---------- */
 .book-container {
     display: flex;
-    align-items: center;
+    align-items: center;        /* centra verticalmente */
     justify-content: center;
-    gap: 30px;
+    gap: 30px;                  /* espacio entre botones y libro */
 }
 
-/* LIBRO */
+/* ---------- EL LIBRO ---------- */
 .book {
-    position: relative;
+    position: relative;         /* referencia para posicionar portada y página */
     width: 500px;
     height: 650px;
-    perspective: 2000px;
+    perspective: 2000px;        /* CLAVE del 3D: cuánta "profundidad" tiene la escena.
+                                   Sin perspective, la rotación 3D se ve plana. */
 }
 
-/* PORTADA */
+/* ---------- PORTADA ---------- */
 .book-cover {
     position: absolute;
-    inset: 0;
-    background: linear-gradient(
+    inset: 0;                       /* ocupa todo el libro */
+    background: linear-gradient(     /* degradado diagonal azul → morado (romántico) */
             135deg,
             #5DADE2,
             #AF7AC5
@@ -40,12 +53,15 @@
     justify-content: center;
     align-items: center;
     color: white;
-    z-index: 5;
-    transition: transform 1s ease;
-    transform-origin: left;
+    z-index: 5;                     /* la portada va ENCIMA de la página */
+    transition: transform 1s ease;  /* gira lentamente (1 segundo) */
+    transform-origin: left;         /* gira sobre su borde IZQUIERDO, como una puerta */
     box-shadow: 0 20px 50px rgba(0,0,0,0.2);
 }
 
+/* PORTADA ABIERTA: gira 160° hacia la izquierda (se "esconde"
+   detrás). Como la página interior tiene el mismo origen, parece
+   que pasamos a ver la página de la derecha. */
 .book-cover.open {
     transform: rotateY(-160deg);
 }
@@ -55,7 +71,7 @@
     margin-bottom: 20px;
 }
 
-.book-cover span {
+.book-cover span {          /* el corazón */
     font-size: 4rem;
     margin-bottom: 20px;
 }
@@ -64,33 +80,37 @@
     font-size: 1.3rem;
 }
 
-/* PÁGINA */
+/* ---------- PÁGINA INTERIOR ---------- */
 .book-page {
     position: absolute;
     inset: 0;
     background: white;
     border-radius: 20px;
-    overflow: hidden;
+    overflow: hidden;               /* recorta la foto si sobresale */
     box-shadow: 0 20px 50px rgba(0,0,0,0.15);
     transform-origin: left;
+    /* Transición de DOS propiedades al mismo tiempo:
+       - transform (giro al pasar de página)
+       - opacity   (fade sutil)     */
     transition:
         transform 0.8s ease,
         opacity 0.5s ease;
 }
 
-/* animación */
+/* Clase .flip que agrega album.js durante 400ms:
+   da un pequeño giro como si la hoja "despegara" y volviera. */
 .book-page.flip {
     transform: rotateY(-15deg);
 }
 
-/* IMAGEN */
+/* ---------- IMAGEN DENTRO DE LA PÁGINA ---------- */
 .book-page img {
     width: 100%;
-    height: 82%;
-    object-fit: cover;
+    height: 82%;         /* la foto ocupa el 82% del alto, el resto es texto */
+    object-fit: cover;   /* llena el espacio recortando */
 }
 
-/* TEXTO */
+/* ---------- TEXTO DE LA PÁGINA ---------- */
 .page-text {
     padding: 20px;
 }
@@ -100,29 +120,29 @@
     color: #34495E;
 }
 
-/* BOTONES */
+/* ---------- BOTONES ❮ ❯ ---------- */
 .album-btn {
     width: 55px;
     height: 55px;
     border: none;
-    border-radius: 50%;
+    border-radius: 50%;     /* circulares */
     background: white;
     box-shadow: 0 10px 25px rgba(0,0,0,0.1);
     font-size: 1.5rem;
     cursor: pointer;
-    transition: 0.3s;
+    transition: 0.3s;       /* anima el hover */
 }
 
 .album-btn:hover {
-    transform: scale(1.1);
-    background: #5DADE2;
+    transform: scale(1.1);   /* se agranda ligeramente */
+    background: #5DADE2;     /* y se pinta del azul del tema */
     color: white;
 }
 
-/* MÓVIL */
+/* ---------- MÓVIL ---------- */
 @media (max-width: 768px) {
     .book {
-        width: 320px;
+        width: 320px;        /* libro más pequeño */
         height: 480px;
     }
     .book-cover h3 {

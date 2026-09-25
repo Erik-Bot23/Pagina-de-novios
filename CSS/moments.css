@@ -1,3 +1,13 @@
+/* ============================================================
+   moments.css — CARRUSEL INFINITO DE MOMENTOS
+   ------------------------------------------------------------
+   Trabaja con JS/moments.js (que crea las tarjetas) y la
+   animación keyframes scrollGallery de abajo.
+   Quizá no lo parezca, pero NO hay scroll "real" con JavaScript:
+   la franja se mueve automáticamente con una animación CSS.
+   ============================================================ */
+
+/* Sección que contiene al carrusel, centrada en columna */
 .moments-section {
     display: flex;
     flex-direction: column;
@@ -9,54 +19,63 @@
     font-size: 3rem;
     text-align: center;
     display: block;
-    width: 100%;
+    width: 100%; /* fuerza a que ocupe todo el ancho y el título quede arriba */
 }
 
+/* "Ventana" del carrusel: lo que se ve es solo una parte de la franja completa.
+   overflow: hidden recorta todo lo que sobresalga por los lados. */
 .moments-wrapper {
     overflow: hidden;
     position: relative;
     width: 100%;
 }
 
+/* La franja deslizante */
 .moments-carousel {
     display: flex;
-    gap: 20px;
-    width: max-content;
-    animation: scrollGallery 40s linear infinite;
+    gap: 20px;                        /* separación entre tarjetas */
+    width: max-content;               /* la franja crece con su contenido (no se encoge) */
+    animation: scrollGallery 40s linear infinite; /* se DESLIZA sola, en loop */
 }
 
+/* Al pasar el mouse sobre el carrusel, la animación se PAUSA */
 .moments-carousel:hover {
     animation-play-state: paused;
 }
 
+/* ---------- TARJETA DE MOMENTO ---------- */
 .moment-card {
     position: relative;
     width: 250px;
     height: 350px;
-    flex-shrink: 0;
+    flex-shrink: 0;                   /* las tarjetas no se encogen para que quepan */
     border-radius: 20px;
-    overflow: hidden;
+    overflow: hidden;                 /* esconde la imagen si sobresale */
     cursor: pointer;
-    transition: transform 0.5s ease;
+    transition: transform 0.5s ease;  /* anima el agrandado al pasar el mouse */
     z-index: 1;
 }
 
 .moment-card img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: cover;                /* llena el recuadro recortando la imagen */
     transition: all 0.5s ease;
 }
 
+/* Efecto al pasar el mouse: la tarjeta se agranda y sube por encima de las demás */
 .moment-card:hover {
     transform: scale(1.08);
     z-index: 5;
 }
 
+/* ---------- CAPA DE TEXTO (overlay) ---------- */
+/* Se sitúa sobre TODA la tarjeta (inset:0 = todos los lados).
+   Por defecto está invisible (opacity:0); aparece al activar la tarjeta. */
 .moment-overlay {
     position: absolute;
-    inset: 0;
-    background: rgba(0,0,0,0.5);
+    inset: 0;                           /* top:0; right:0; bottom:0; left:0 */
+    background: rgba(0,0,0,0.5);        /* oscurece la foto para leer el texto */
     color: white;
     display: flex;
     flex-direction: column;
@@ -64,23 +83,29 @@
     align-items: center;
     text-align: center;
     padding: 20px;
-    opacity: 0;
-    transition: opacity 0.5s ease;
+    opacity: 0;                         /* oculto */
+    transition: opacity 0.5s ease;      /* aparición suave */
 }
 
+/* Tarjeta ACTIVADA (clic de usuario, ver moments.js) */
 .moment-card.active {
-    transform: scale(1.15);
-    z-index: 10;
+    transform: scale(1.15);             /* se agranda más */
+    z-index: 10;                        /* se pone encima de las demás */
 }
 
 .moment-card.active img {
-    opacity: 0.4;
+    opacity: 0.4;                       /* la foto se aclara… */
 }
 
 .moment-card.active .moment-overlay {
-    opacity: 1;
+    opacity: 1;                         /* y así el texto es legible */
 }
 
+/* ---------- ANIMACIÓN "MARQUEE" ---------- */
+/* La franja se mueve desde translateX(0) hasta translateX(-50%).
+   Como los momentos están DUPLICADOS (moments.js), la segunda
+   mitad es idéntica a la primera: al llegar a -50% la escena se
+   ve igual que al inicio → el movimiento parece infinito. */
 @keyframes scrollGallery {
     from {
         transform: translateX(0);
@@ -90,14 +115,13 @@
     }
 }
 
+/* ---------- MÓVIL ---------- */
 @media (max-width: 768px) {
     .moment-card {
-
-        width: 180px;
+        width: 180px;                   /* tarjetas más pequeñas */
         height: 260px;
     }
     .moments-carousel {
-
-        gap: 12px;
+        gap: 12px;                      /* menos separación */
     }
 }

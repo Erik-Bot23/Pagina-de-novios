@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>¿Cómo funciona "Mi Yanet"? - Documentación del Proyecto</title>
+<style>
+  :root {
+    --azul: #5DADE2;
+    --azul-oscuro: #2C3E50;
+    --rosa: #e78f9e;
+    --gris: #5D6D7E;
+    --fondo: #fbf7f8;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    color: #333;
+    background: var(--fondo);
+    line-height: 1.6;
+    padding: 30px;
+  }
+  .page {
+    max-width: 900px;
+    margin: 0 auto;
+    background: #fff;
+    border-radius: 14px;
+    box-shadow: 0 5px 30px rgba(0,0,0,0.12);
+    overflow: hidden;
+  }
+  header.cover {
+    padding: 45px 45px 35px;
+    background: linear-gradient(135deg, var(--azul), #AF7AC5);
+    color: #fff;
+    text-align: center;
+  }
+  header.cover h1 { font-size: 2.2rem; margin-bottom: 8px; }
+  header.cover p  { font-size: 1.05rem; opacity: .95; }
+  main { padding: 40px 45px 50px; }
+  h2 {
+    font-size: 1.5rem;
+    color: var(--azul-oscuro);
+    margin: 38px 0 14px;
+    padding-bottom: 6px;
+    border-bottom: 3px solid var(--azul);
+  }
+  h2:first-of-type { margin-top: 6px; }
+  h3 { color: var(--azul-oscuro); margin: 20px 0 8px; font-size: 1.08rem; }
+  p { margin-bottom: 10px; }
+  ul, ol { padding-left: 22px; margin-bottom: 12px; }
+  li { margin-bottom: 5px; }
+  code {
+    font-family: Consolas, 'Courier New', monospace;
+    font-size: .9em;
+    background: #f0f3f6;
+    padding: 2px 6px;
+    border-radius: 5px;
+    color: #c0392b;
+  }
+  pre {
+    font-family: Consolas, 'Courier New', monospace;
+    background: #243342;
+    color: #e8f0f8;
+    padding: 16px 18px;
+    border-radius: 10px;
+    overflow-x: auto;
+    font-size: .85rem;
+    line-height: 1.5;
+    margin-bottom: 14px;
+  }
+  pre code { background: none; color: inherit; padding: 0; }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 14px 0 18px;
+    font-size: .92rem;
+  }
+  th, td { border: 1px solid #dde4ea; padding: 8px 12px; text-align: left; }
+  th { background: #eef4f9; color: var(--azul-oscuro); }
+  tr:nth-child(even) td { background: #fafcfe; }
+  .tag {
+    display: inline-block;
+    font-size: .72rem;
+    font-weight: 700;
+    padding: 2px 9px;
+    border-radius: 20px;
+    color: #fff;
+  }
+  .tag.active { background: #27ae60; }
+  .tag.inactive { background: #95a5a6; }
+  .tag.html { background: #e67e22; }
+  .tag.css { background: #2980b9; }
+  .tag.js { background: #f1c40f; color: #333; }
+  .box {
+    background: #fdf3e3;
+    border-left: 4px solid #f39c12;
+    padding: 12px 16px;
+    border-radius: 0 8px 8px 0;
+    margin: 14px 0;
+    font-size: .93rem;
+  }
+  .box.green { background: #eafaf1; border-color: #27ae60; }
+  .box.red { background: #fdedec; border-color: #e74c3c; }
+  .badge-strip { margin-top: 14px; text-align: center; }
+  .badge-strip span { margin: 0 4px; }
+  footer { text-align: center; padding: 20px; color: #999; font-size: .85rem; }
+  @media print {
+    body { background: #fff; padding: 0; }
+    .page { box-shadow: none; border-radius: 0; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header class="cover">
+    <h1>❤️ "Mi Yanet" — Nuestra historia</h1>
+    <p>Documentación técnica: cómo está construido y cómo funciona el proyecto</p>
+    <div class="badge-strip">
+      <span class="tag html">HTML</span>
+      <span class="tag css">CSS</span>
+      <span class="tag js">JavaScript</span>
+      <span class="tag active">Activo</span>
+      <span class="tag inactive">En desuso</span>
+    </div>
+  </header>
+
+  <main>
+
+    <h2>1. ¿Qué es este proyecto?</h2>
+    <p>
+      Es una página web estática (sin servidor ni base de datos) que funciona sólo con
+      <strong>HTML + CSS + JavaScript</strong>. Es un "regalo digital" para Yanet: cuenta la
+      historia de la pareja con fotos, frases, un álbum animado, un carrusel de momentos y un
+      quiz interactivo. Al ser estática, se puede abrir en cualquier navegador sin instalar nada
+      o publicar gratis en <em>GitHub Pages</em> / <em>Netlify</em>.
+    </p>
+
+    <h2>2. Estructura de archivos</h2>
+    <pre><code>Mi Yanet/
+├── Index.html              ← Página principal (todo vive aquí)
+├── Assets/
+│   ├── Images/             ← 70 fotos (1.jpeg … 70.jpeg)
+│   └── Music/              ← Canción de fondo (EVERYTHING.mp3)
+├── CSS/                    ← 10 hojas de estilo
+│   ├── main.css            ← Solo importa los demás (punto de entrada)
+│   ├── general.css         ← Base: fondo, botones, tarjetas
+│   ├── hero.css            ← Portada (foto de pantalla completa)
+│   ├── scroll.css          ← Animación .fade al hacer scroll
+│   ├── phrases.css         ← Tarjeta de frases
+│   ├── story.css           ← Sección "Nuestra historia"
+│   ├── moments.css         ← Carrusel infinito de momentos
+│   ├── album.css           ← Álbum con efecto libro 3D
+│   ├── quiz.css            ← Modal de preguntas
+│   └── footer.css          ← Corazones flotantes del pie
+├── JS/                     ← 9 módulos JavaScript (ES Modules)
+│   ├── main.js             ← Punto de entrada (orquesta los módulos)
+│   ├── album.js            ← Lógica del álbum-libro
+│   ├── moments.js          ← Crea el carrusel de momentos
+│   ├── phrases.js          ← Cambia la frase cada 2 s
+│   ├── scroll.js           ← Muestra las tarjetas al hacer scroll
+│   ├── quiz.js             ← Quiz + inicia la música
+│   ├── timeline.js         ← (EN DESUSO) línea de tiempo
+│   ├── book.js             ← (EN DESUSO) libro de páginas
+│   └── carousel.js         ← (EN DESUSO) carrusel simple
+└── docs/                   ← Esta documentación</code></pre>
+
+    <h2>3. Flujo de la página, de arriba hacia abajo</h2>
+    <table>
+      <tr><th>#</th><th>Sección</th><th>Tecnología</th><th>¿De dónde salen los datos?</th></tr>
+      <tr><td>1</td><td>Música de fondo</td><td>HTML <code>&lt;audio&gt;</code></td><td>Assets/Music</td></tr>
+      <tr><td>2</td><td>Hero (portada)</td><td>CSS</td><td>Foto 12 en hero.css</td></tr>
+      <tr><td>3</td><td>Frases</td><td>JS (phrases.js)</td><td>Arreglo en el código</td></tr>
+      <tr><td>4</td><td>Nuestra historia</td><td>HTML + CSS</td><td>Texto fijo en Index.html</td></tr>
+      <tr><td>5</td><td>Momentos importantes</td><td>JS (moments.js) + CSS</td><td>Arreglo en moments.js</td></tr>
+      <tr><td>6</td><td>Álbum (libro)</td><td>JS (album.js) + CSS</td><td>Arreglo en album.js</td></tr>
+      <tr><td>7</td><td>Quiz</td><td>JS (quiz.js) + CSS</td><td>Arreglo de preguntas en quiz.js</td></tr>
+      <tr><td>8</td><td>Footer</td><td>CSS</td><td>Emojis decorativos en footer.css</td></tr>
+    </table>
+    <p>
+      Toda la interacción la controla <code>JS/main.js</code>: espera a que el HTML termine de
+      cargar (evento <code>DOMContentLoaded</code>) y entonces llama a los módulos que escriben
+      contenido y escuchan clics. Cargar los scripts como <code>type="module"</code> permite usar
+      <code>import</code> / <code>export</code> para dividir el código en archivos pequeños.
+    </p>
+
+    <h2>4. Módulos de JavaScript</h2>
+    <h3>Activos (se ejecutan)</h3>
+    <table>
+      <tr><th>Módulo</th><th>Qué hace en la página</th></tr>
+      <tr>
+        <td><code>album.js</code></td>
+        <td>Controla el libro: abre la portada, cambia foto (❮ / ❯), anima el "paso de hoja".</td>
+      </tr>
+      <tr>
+        <td><code>moments.js</code></td>
+        <td>Genera las tarjetas del carrusel (duplica los datos para lograr el loop infinito) y
+        gestiona el clic que muestra el texto de cada foto.</td>
+      </tr>
+      <tr>
+        <td><code>phrases.js</code></td>
+        <td>Elige una frase aleatoria de un arreglo y la muestra cada 2 segundos
+        (<code>setInterval</code>).</td>
+      </tr>
+      <tr>
+        <td><code>scroll.js</code></td>
+        <td>Agrega la clase <code>.show</code> a las tarjetas <code>.fade</code> cuando entran a
+        la pantalla (animación de aparición).</td>
+      </tr>
+      <tr>
+        <td><code>quiz.js</code></td>
+        <td>Maneja el modal de preguntas, suma puntaje, muestra el resultado, reinicia el juego y
+        inicia la música (necesita un clic del usuario para que el navegador permita el audio).</td>
+      </tr>
+    </table>
+
+    <h3>En desuso (no se ejecutan)</h3>
+    <p>
+      En <code>main.js</code> hay tres módulos comentados. Son versiones alternativas que se
+      dejaron como referencia pero <strong>no</strong> tienen sus elementos en el HTML actual;
+      si se activaran causarían un error.
+    </p>
+    <table>
+      <tr><th>Módulo</th><th>Qué hacía</th></tr>
+      <tr><td><code>timeline.js</code></td><td>Línea de tiempo de eventos (necesita un <code>#timeline</code> en el HTML). Se sustituyó por moments.js.</td></tr>
+      <tr><td><code>book.js</code></td><td>Libro cuyas páginas se voltean haciendo clic (necesita elementos <code>.page</code>). Se sustituyó por album.js.</td></tr>
+      <tr><td><code>carousel.js</code></td><td>Carrusel simple que alterna imágenes cada 3 s (necesita <code>.carousel img</code>). Se sustituyó por moments.js.</td></tr>
+    </table>
+
+    <h2>5. Sistema de estilos (CSS)</h2>
+    <p>
+      <code>CSS/main.css</code> no define estilos: sólo <strong>importa</strong> los demás archivos
+      con <code>@import</code>. Cada sección de la página tiene su propia hoja, lo que mantiene el
+      proyecto ordenado.
+    </p>
+    <ul>
+      <li><strong>Fondo global:</strong> tres capas degradadas (radiales rojo/azul + lineal) en <code>general.css</code>.</li>
+      <li><strong>Hero:</strong> imagen de fondo en <code>100vh</code> con capa oscura (<code>.overlay</code>) para el texto.</li>
+      <li><strong>Efecto de libro:</strong> la portada gira con <code>rotateY(-160deg)</code> usando <code>perspective</code> en <code>album.css</code>.</li>
+      <li><strong>Carrusel infinito:</strong> animación <code>scrollGallery</code> de <code>translateX(0)</code> a <code>translateX(-50%)</code> en <code>moments.css</code>. Como los momentos están duplicados, el recorrido del 50% "se cierra" y parece infinito.</li>
+      <li><strong>Responsive:</strong> cada hoja incluye <code>@media (max-width: 768px)</code> para ajustar tamaños en celular.</li>
+    </ul>
+
+    <h2>6. Cómo ver el proyecto</h2>
+    <ol>
+      <li>Abrir <code>Index.html</code> directamente con doble clic (o arrastrarlo al navegador). Funciona sin instalar nada.</li>
+      <li>Para usarlo como sitio web público, se puede subir el repositorio a <strong>GitHub Pages</strong> o <strong>Netlify</strong>.</li>
+    </ol>
+
+    <div class="box red">
+      <strong>Importante (rutas):</strong> los servidores Linux (GitHub Pages, Netlify) distinguen
+      mayúsculas de minúsculas. Por eso todos los enlaces usan exactamente
+      <code>CSS/</code>, <code>JS/</code> y <code>Assets/Images/</code> (con mayúsculas). En
+      Windows funciona de ambas formas, pero en internet debe coincidir al 100%.
+    </div>
+
+    <h2>7. Bugs y detalles corregidos en esta revisión</h2>
+    <table>
+      <tr><th>Problema</th><th>Corrección</th></tr>
+      <tr><td>Faltaba <code>meta viewport</code></td><td>Ahora la página se ve bien en celulares.</td></tr>
+      <tr><td>Gradiente con dirección inválida <code>to button</code> en story.css</td><td>Se cambió a <code>to bottom</code>.</td></tr>
+      <tr><td>Rutas con mayúsculas inconsistentes (<code>css/…</code>, <code>assets/images/…</code>)</td><td>Se unificaron a <code>CSS/…</code>, <code>JS/…</code>, <code>Assets/Images/…</code>.</td></tr>
+      <tr><td>Erratas en preguntas del quiz + pregunta sin signo de cierre</td><td>Texto corregido.</td></tr>
+      <tr><td>Código sin explicación</td><td>Se documentaron HTML, CSS y JS con comentarios en español.</td></tr>
+    </table>
+
+    <h2>8. Qué más puedes mejorar</h2>
+    <ul>
+      <li><strong>Botón de pausar/mutar la música:</strong> hoy la canción inicia al abrir el quiz y no hay forma de detenerla.</li>
+      <li><strong>Elegir frases sin repetir:</strong> <code>phrases.js</code> elige con <code>Math.random()</code>, a veces se repite la misma frase seguido. Se podría barajar el arreglo.</li>
+      <li><strong>Activar la animación al cargar:</strong> en <code>scroll.js</code>, las tarjetas ya visibles al abrir podrían mostrarse de inmediato llamando una vez a la función.</li>
+      <li><strong>Texto alternativo (alt) en las fotos</strong> para mejorar la accesibilidad.</li>
+      <li><strong>Favicon</strong> (icono de la pestaña).</li>
+      <li>Comprobar las fechas de la línea de tiempo (ejemplo) que dicen 2024, cuando la historia inició en septiembre de 2025.</li>
+    </ul>
+
+  </main>
+  <footer>Documento generado automáticamente para acompañar el proyecto "Mi Yanet".</footer>
+</div>
+</body>
+</html>
