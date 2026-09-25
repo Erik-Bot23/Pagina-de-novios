@@ -13,6 +13,7 @@ export function initAlbum(){
   // -------------------------------
   // 1) DATOS: lista de recuerdos
   //    Cada objeto = una foto + el texto que la acompaña.
+  //
   // -------------------------------
   const album = [
       {
