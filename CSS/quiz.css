@@ -16,6 +16,7 @@
     display: none;            /* OCULTO por defecto */
     justify-content: center;  /* centrar la caja (flex) */
     align-items: center;
+    padding: 20px; /*Margen de seguridad alrededor*/
     z-index: 9999;            /* muy alto: por encima de TODO lo demás */
 }
 
@@ -29,6 +30,9 @@
     position: relative;
     width: 90%;
     max-width: 650px;
+    max-height: 90vh; /*Nunca más alta que la pantalla*/
+    display: flex;
+    flex-direction: column; /*Apila el contenido*/
     background: white;
     border-radius: 30px;
     padding: 50px 40px;
@@ -76,6 +80,14 @@
     height: 16px; /*La cruz más pequeña que el botón*/
     width: auto;
 }
+
+/*El scroll vive dentro, no en la caja.
+ min-height: 0 es clave: permite que el hijo flexible se encoja
+ y así aparezca la barra en vez de desbordarse*/
+ #quizContent, .quiz-result{
+    overflow-y: auto;
+    min-height: 0;
+ }
 
 /* ---------- PREGUNTA ---------- */
 #quizQuestion {
@@ -156,4 +168,11 @@
     object-fit: cover; /*Recorta sin deformar*/
     border-radius: 16px; /*Esquinas redondeadas como las opciones*/
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+/*Aire en el móvil*/
+@media (max-width: 768px){
+    .quiz-img{
+        max-height: 180px;
+    }
 }

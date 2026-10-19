@@ -85,6 +85,30 @@ export function initAlbum(){
           text: "San Valentin"
       },
       {
+          img: "Assets/Images/59.jpeg",
+          text: "Campo de flores Oaxaca"
+      },
+      {
+          img: "Assets/Images/60.jpeg",
+          text: "Campo de flores Oaxaca"
+      },
+      {
+          img: "Assets/Images/63.jpeg",
+          text: "Campo de flores Oaxaca"
+      },
+      {
+          img: "Assets/Images/67.jpeg",
+          text: "Campo de flores Oaxaca"
+      },
+      {
+          img: "Assets/Images/69.jpeg",
+          text: "Campo de flores Oaxaca"
+      },
+      {
+          img: "Assets/Images/70.jpeg",
+          text: "Campo de flores Oaxaca"
+      },
+      {
           img: "Assets/Images/24.jpeg",
           text: "Aniversario en los Honguitos"
       },
@@ -173,53 +197,28 @@ export function initAlbum(){
           text: "Aniversario en los Horcones"
       },
       {
-          img: "Assets/Images/59.jpeg",
-          text: "Campo de flores Oaxaca"
-      },
-      {
-          img: "Assets/Images/60.jpeg",
-          text: "Campo de flores Oaxaca"
-      },
-      {
-          img: "Assets/Images/63.jpeg",
-          text: "Campo de flores Oaxaca"
-      },
-      {
-          img: "Assets/Images/67.jpeg",
-          text: "Campo de flores Oaxaca"
-      },
-      {
-          img: "Assets/Images/69.jpeg",
-          text: "Campo de flores Oaxaca"
-      },
-      {
-          img: "Assets/Images/70.jpeg",
-          text: "Campo de flores Oaxaca"
-      }
-      ,
-      {
           img: "Assets/Images/76.jpeg",
           text: "Playa de Puerto Escondido"
-      }
-      ,
+      },
       {
           img: "Assets/Images/75.jpeg",
           text: "Playa de Puerto Escondido"
-      }
-      ,
+      },
       {
           img: "Assets/Images/83.jpeg",
           text: "Playa de Puerto Escondido"
-      }
-      ,
+      },
       {
           img: "Assets/Images/79.jpeg",
           text: "Mirador"
-      }
-      ,
+      },
       {
           img: "Assets/Images/81.jpeg",
           text: "San Jose del Pacifico"
+      },
+      {
+          img: "Assets/Images/78.jpeg",
+          text: "Yan feliz por sus flores y yo feliz de verla sonreír"
       }
   ];
 
@@ -256,7 +255,7 @@ export function initAlbum(){
   }
 
   // -------------------------------
-  // 5) Botón siguiente (❯)
+  // 5) Botón siguiente (>)
   //    - Si la portada NO está abierta: abre la portada y termina.
   //    - Si ya está abierta: avanza al siguiente recuerdo.
   //    `(current + 1) % album.length` = incremento circular:
@@ -273,7 +272,7 @@ export function initAlbum(){
   };
 
   // -------------------------------
-  // 6) Botón anterior (❮)
+  // 6) Botón anterior (<)
   //    - Si la portada no está abierta, no hace nada.
   //    - Retrocede de forma circular:
   //      `(current - 1 + album.length) % album.length` evita

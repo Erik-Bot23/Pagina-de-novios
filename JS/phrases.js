@@ -9,10 +9,11 @@ export function initPhrases(){
   // 1) BANCO de frases (el arreglo de donde se elige)
   // -------------------------------
   const phrases = [
+    "No eres un trebol de tres hojas pero eres mi amuleto de la suerte",
     "Eres mi lugar favorito",
     "Contigo todo es mejor",
+    "Eres hermosa en cada faceta que te conozco",
     "Gracias por cada momento juntos",
-    "Eres mi historia favorita",
     "Cada momento contigo es maravilloso",
     "Quiero vivir mi vida a tu lado"
   ];

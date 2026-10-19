@@ -21,43 +21,44 @@ export function initQuiz(){
     const questions = [
         {
             question: "¿Dónde fue nuestra primera cita?",
-            img: "Assets/Images/11.jpeg",
-            options: ["Hakuna Matata", "Pizzería", "Cempasúchil Café y Mezcal"],
+            options: ["Hakuna Matata", "Pizzería en segunda planta", "Cempasúchil Café y Mezcal"],
             correct: 1
         },
         {
-            question: "¿Quién dijo 'te amo' primero?",
-            options: ["Erik", "Yanet", "Los dos"],
+            question: "¿Por qué fuimos a comer pizza en nuestra primera cita en vez de ir a correr?",
+            options: ["Estaba lloviendo", "Nos dio hambre", "Hacía mucho calor"],
             correct: 0
         },
         {
-            question: "¿Qué animal encontramos en nuestra visita al río?",
+            question: "¿Qué animal atrapamos en nuestra visita al río?",
             options: ["Ranas", "Ambos", "Cangrejos"],
             correct: 1
         },
         {
-            question: "¿A donde fue nuestra primera salida al aire libre?",
+            question: "¿A donde fuimos por primera vez en moto?",
+            img: "Assets/Images/29.jpeg",
             options: ["San Jose", "Oaxaca", "San Bernardo"],
             correct: 2
         },
         {
-            question: "¿Quién es más celoso?",
-            options: ["Erik", "Yanet", "Empate"],
+            question: "¿Cuál fue nuestra primer pelicula en el cine?",
+            options: ["Spider Man", "La odisea", "Kimetsu no Yaiba"],
             correct: 0
         },
         {
             question: "¿A qué animal le dimos de comer en el acuario Michin?",
+            img: "Assets/Images/85.jpeg",
             options: ["Delfin", "Peces", "Mantarrayas"],
             correct: 2
         },
         {
             question: "¿Cuál fue nuestro primer viaje?",
-            options: ["CDMX", "Playa", "Puebla"],
+            options: ["CDMX", "Playa", "San José"],
             correct: 0
         },
         {
-            question: "¿Cuáles son los nombres de los padres y la hermana de Erik?",
-            options: ["Albino, Sabina, Eva", "Albino, Sabina, Anais", "Juan, Elena, Anais"],
+            question: "¿Cuáles son los nombres de los padres y hermanos de Erik?",
+            options: ["Albino, Sabina, Eva y Jorgue", "Albino, Sabina, Anais y Gustavo", "Juan, Elena, Anais y Angel"],
             correct: 1
         },
         {
@@ -76,8 +77,9 @@ export function initQuiz(){
             correct: 2
         },
         {
-            question: "¿Seguiremos escribiendo nuestra historia juntos?",
-            options: ["Siempre", "Obviamente", "Por supuesto"],
+            question: "¿Donde celebramos nuestro primer aniversario?",
+            img: "Assets/Images/81.jpeg",
+            options: ["San Jose", "Playa", "Oaxaca"],
             correct: 0
         }
     ];
@@ -89,7 +91,7 @@ export function initQuiz(){
     const modal = document.getElementById("quizModal");      // fondo del modal
     const music = document.getElementById("bgMusic");        // <audio> de la canción
     const openBtn = document.getElementById("openQuizBtn");  // botón "Comenzar Quiz"
-    const closeBtn = document.getElementById("closeQuiz");   // botón ✕
+    const closeBtn = document.getElementById("closeQuiz");   // botón X
     const questionText = document.getElementById("quizQuestion"); // <h2> pregunta
     const optionsContainer = document.getElementById("quizOptions"); // contenedor de botones
     const counter = document.getElementById("quizCounter");  // "Pregunta X de Y"
@@ -135,7 +137,7 @@ export function initQuiz(){
 
             // Al hacer clic en una opción:
             button.onclick = () => {
-                // Si el índice de la opción coincide con el correcto → +1
+                // Si el índice de la opción coincide con el correcto -> +1
                 if(index === q.correct){
                     score++;
                 }
@@ -162,7 +164,7 @@ export function initQuiz(){
     function showResult(){
         quizContent.style.display = "none"; // esconder preguntas
         resultBox.classList.add("active");  // mostrar pantalla final (.quiz-result.active)
-        scoreText.innerText = `Obtuviste ${score} de ${questions.length} respuestas correctas ❤️`;
+        scoreText.innerText = `Obtuviste ${score} de ${questions.length} respuestas correctas`;
     }
 
     // ------------------------------------------------
@@ -184,15 +186,17 @@ export function initQuiz(){
     openBtn.addEventListener("click", () => {
         music.play();            // Reproducir música
         modal.classList.add("active"); // mostrar modal
+        document.body.classList.add("modal-open"); //Agregar la clase modal-open al body
         resetQuiz();             // empezar de cero
     });
 
     // Cerrar el modal (la música sigue si ya fue iniciada)
     closeBtn.addEventListener("click", () => {
         modal.classList.remove("active");
+        document.body.classList.remove("modal-open"); //Quitar modal-open del body
     });
 
-    // Botón "Intentar otra vez" → reiniciar sin cerrar el modal
+    // Botón "Intentar otra vez" -> reiniciar sin cerrar el modal
     restartBtn.addEventListener("click", () => {
         resetQuiz();
     });

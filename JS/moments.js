@@ -48,7 +48,7 @@ export function initMoments(){
         {
             img: "Assets/Images/58.jpeg",
             title: "Campo de flores",
-            date: "Febreo de 2026",
+            date: "Febrero de 2026",
             desc: "Xoxocotlan Oaxaca"
         },
         {
@@ -92,7 +92,7 @@ export function initMoments(){
     // Referencia al contenedor donde se van a agregar las tarjetas
     const carousel = document.getElementById("carousel");
 
-    // Se duplican los momentos → la animación de 50% se cierra en loop
+    // Se duplican los momentos -> la animación de 50% se cierra en loop
     const duplicatedMoments = [...moments, ...moments];
 
     // -------------------------------
@@ -116,7 +116,7 @@ export function initMoments(){
         `;
 
         // -------------------------------
-        // 3) Clic en la tarjeta → expandir y mostrar el texto
+        // 3) Clic en la tarjeta -> expandir y mostrar el texto
         //    - stopPropagation: evita que el clic suba y dispare
         //      el listener del documento (que cierra todo).
         //    - Se guarda si esta tarjeta YA era la activa para

@@ -97,3 +97,8 @@ button {
   margin: 0 0.15em;   /*Aire a izquierda y derecha para que no se pegue al texto*/
   pointer-events: none; /*Evita que la imagen robe los clics del botón*/
 }
+
+/*Scrol del fondo bloqueado*/
+body.modal-open{
+  overflow: hidden;
+}
