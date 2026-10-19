@@ -18,19 +18,15 @@ export function initAlbum(){
   const album = [
       {
           img: "Assets/Images/1.jpeg",
-          text: "Primer salida a Oaxaca"
+          text: "Primer cita en Oaxaca"
       },
       {
           img: "Assets/Images/2.jpeg",
-          text: "Primer salida a Oaxaca"
+          text: "Primer cita en Oaxaca"
       },
       {
           img: "Assets/Images/3.jpeg",
-          text: "Primer salida a Oaxaca"
-      },
-      {
-          img: "Assets/Images/4.jpeg",
-          text: "Nuestro inicio como novios"
+          text: "Primer cita en Oaxaca"
       },
       {
           img: "Assets/Images/6.jpeg",
@@ -41,28 +37,24 @@ export function initAlbum(){
           text: "Día de muertos en Oaxaca"
       },
       {
-          img: "Assets/Images/8.jpeg",
-          text: "Día de muertos en Oaxaca"
-      },
-      {
           img: "Assets/Images/9.jpeg",
           text: "Día de muertos en Oaxaca"
       },
       {
           img: "Assets/Images/11.jpeg",
-          text: "Salida al río"
+          text: "Cita en el río"
       },
       {
           img: "Assets/Images/13.jpeg",
-          text: "Salida al río"
+          text: "Cita en el río"
       },
       {
           img: "Assets/Images/14.jpeg",
-          text: "Salida a Oaxaca"
+          text: "Cita en Oaxaca"
       },
       {
           img: "Assets/Images/15.jpeg",
-          text: "Salida a Oaxaca"
+          text: "Cita en Oaxaca"
       },
       {
           img: "Assets/Images/16.jpeg",
@@ -70,31 +62,19 @@ export function initAlbum(){
       },
       {
           img: "Assets/Images/18.jpeg",
-          text: "Foto de Yan"
+          text: "Yan luciendo hermosa en un vestido negro"
       },
       {
           img: "Assets/Images/20.jpeg",
-          text: "Salida a San Bernardo"
+          text: "Cita en San Bernardo"
       },
       {
           img: "Assets/Images/21.jpeg",
-          text: "Salida a San Bernardo"
-      },
-      {
-          img: "Assets/Images/22.jpeg",
-          text: "Salida a San Bernardo"
+          text: "Cita en San Bernardo"
       },
       {
           img: "Assets/Images/28.jpeg",
-          text: "Salida a San Bernardo"
-      },
-      {
-          img: "Assets/Images/29.jpeg",
-          text: "Salida a San Bernardo"
-      },
-      {
-          img: "Assets/Images/30.jpeg",
-          text: "Salida a San Bernardo"
+          text: "Cita en San Bernardo"
       },
       {
           img: "Assets/Images/23.jpeg",
@@ -114,15 +94,7 @@ export function initAlbum(){
       },
       {
           img: "Assets/Images/31.jpeg",
-          text: "Fotos de Yan"
-      },
-      {
-          img: "Assets/Images/32.jpeg",
-          text: "Fotos de Yan"
-      },
-      {
-          img: "Assets/Images/33.jpeg",
-          text: "Fotos de Yan"
+          text: "Yan luciendo hermosa de traje"
       },
       {
           img: "Assets/Images/34.jpeg",
@@ -130,10 +102,6 @@ export function initAlbum(){
       },
       {
           img: "Assets/Images/35.jpeg",
-          text: "Biblioteca Vasconcelos"
-      },
-      {
-          img: "Assets/Images/41.jpeg",
           text: "Biblioteca Vasconcelos"
       },
       {
@@ -161,15 +129,11 @@ export function initAlbum(){
           text: "Acuario Michin"
       },
       {
-          img: "Assets/Images/45.jpeg",
+          img: "Assets/Images/84.jpeg",
           text: "Acuario Michin"
       },
       {
           img: "Assets/Images/46.jpeg",
-          text: "Acuario Michin"
-      },
-      {
-          img: "Assets/Images/48.jpeg",
           text: "Acuario Michin"
       },
       {
@@ -182,10 +146,6 @@ export function initAlbum(){
       },
       {
           img: "Assets/Images/56.jpeg",
-          text: "Bellas artes"
-      },
-      {
-          img: "Assets/Images/57.jpeg",
           text: "Bellas artes"
       },
       {
@@ -236,6 +196,31 @@ export function initAlbum(){
           img: "Assets/Images/70.jpeg",
           text: "Campo de flores Oaxaca"
       }
+      ,
+      {
+          img: "Assets/Images/76.jpeg",
+          text: "Playa de Puerto Escondido"
+      }
+      ,
+      {
+          img: "Assets/Images/75.jpeg",
+          text: "Playa de Puerto Escondido"
+      }
+      ,
+      {
+          img: "Assets/Images/83.jpeg",
+          text: "Playa de Puerto Escondido"
+      }
+      ,
+      {
+          img: "Assets/Images/79.jpeg",
+          text: "Mirador"
+      }
+      ,
+      {
+          img: "Assets/Images/81.jpeg",
+          text: "San Jose del Pacifico"
+      }
   ];
 
   // -------------------------------
@@ -256,7 +241,7 @@ export function initAlbum(){
 
   // -------------------------------
   // 4) render(): muestra la foto que toca
-  //    - Agrega la clase .flip → efecto de "pasar la hoja" (rotateY)
+  //    - Agrega la clase .flip -> efecto de "pasar la hoja" (rotateY)
   //    - Espera 400ms (duración de la animación) con setTimeout
   //    - Cambia el src y el texto
   //    - Quita .flip para que la página vuelva a su posición

@@ -56,18 +56,25 @@
     right: 20px;
     width: 40px;
     height: 40px;
+    padding: 0; /*Anula el padding del botón genérico*/
     border: none;
     border-radius: 50%;
     background: #e55353;   /* rojo suave */
+    display: flex; /*Centra la cruz dentro del circulo*/
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
-    font-size: 1.1rem;
-    transition: 0.3s;
+    transition: transform 0.3s ease, filter 0.3s ease;
 }
 
 .close-quiz:hover {
-    background: #e55353;
-    color: white;
-    transform: rotate(90deg);  /* la X gira al pasar el mouse */
+    transform: scale(1.1); /*Se agranda ligeramente*/
+    filter: brightness(0.85); /*Se oscurece (sin girar)*/
+}
+
+.close-quiz .icon{
+    height: 16px; /*La cruz más pequeña que el botón*/
+    width: auto;
 }
 
 /* ---------- PREGUNTA ---------- */
@@ -137,4 +144,16 @@
     #quizQuestion {
         font-size: 1.5rem;
     }
+}
+
+/*----------- IMAGEN EN LA PREGUNTA -------------*/
+.quiz-img{
+    display: block; /*Para poder aplicar margin: auto*/
+    margin: 0 auto 25px; /*Centrada y con 25px de separación abajo*/
+    max-width: 100%; /*Nunca más ancha que la caja del quiz*/
+    max-height: 260px; /*Pero tampoco gigante*/
+    width: auto;
+    object-fit: cover; /*Recorta sin deformar*/
+    border-radius: 16px; /*Esquinas redondeadas como las opciones*/
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
 }

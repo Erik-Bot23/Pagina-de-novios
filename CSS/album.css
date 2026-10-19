@@ -3,8 +3,8 @@
    ------------------------------------------------------------
    Trabaja con JS/album.js.
    El "libro" tiene dos piezas superpuestas:
-     - .book-cover → la portada (con el título)
-     - .book-page  → la página interior (foto + leyenda)
+     - .book-cover -> la portada (con el título)
+     - .book-page  -> la página interior (foto + leyenda)
    Al abrir, la portada gira hacia la izquierda (rotateY -160°)
    con un efecto 3D gracias a `perspective`.
    ============================================================ */
@@ -122,21 +122,26 @@
 
 /* ---------- BOTONES ❮ ❯ ---------- */
 .album-btn {
-    width: 55px;
-    height: 55px;
+    width: 60px;
+    height: 60px;
+    padding: 0;     /*Anula el padding del botón genérico*/
     border: none;
-    border-radius: 50%;     /* circulares */
-    background: white;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-    font-size: 1.5rem;
+    border-radius: 50%;     /*Circulares*/
+    background: transparent;    /*Sin fondo: sólo se ve la flecha*/
+    display: flex;  /*Flexbox para centrar la imagen*/
+    align-items: center; /*Centra VERTICALMENTE (eje cruzado)*/
+    justify-content: center; /*Faltaba: centra HORIZONTALMENTE (eje principal)*/
     cursor: pointer;
-    transition: 0.3s;       /* anima el hover */
+    transition: transform 0.3s ease;   /*Solo anima el tamaño, no el color*/
 }
 
 .album-btn:hover {
-    transform: scale(1.1);   /* se agranda ligeramente */
-    background: #5DADE2;     /* y se pinta del azul del tema */
-    color: white;
+    transform: scale(1.15);   /* se agranda ligeramente */
+}
+
+.album-btn .icon{
+    height: 28px;
+    width: auto;
 }
 
 /* ---------- MÓVIL ---------- */

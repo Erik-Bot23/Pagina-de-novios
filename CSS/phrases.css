@@ -7,7 +7,7 @@
 
 .phrase-card {
     text-align: center;
-    /* Fondo degradado horizontal: azul fuerte → azul claro.
+    /* Fondo degradado horizontal: azul fuerte -> azul claro.
        El texto blanco resalta sobre este fondo. */
     background: linear-gradient(to right, #5DADE2, #AED6F1);
     color: white;
@@ -16,5 +16,5 @@
 #phrase {
     font-size: 28px;        /* texto grande y protagonico */
     font-style: italic;     /* cursiva, se ve más romántico/literario */
-    margin-top: 20px;       /* separación con respecto al ❤️ */
+    margin-top: 20px;       /* separación con respecto al corazon*/
 }

@@ -4,8 +4,8 @@
 // Hace que las tarjetas con clase .fade aparezcan suavemente
 // (opacidad + deslizamiento) cuando entran a la pantalla.
 // Combina con CSS/scroll.css:
-//   .fade        → invisible (opacity 0, desplazada 30px abajo)
-//   .fade.show   → visible  (opacity 1, desplazada 0px)
+//   .fade        -> invisible (opacity 0, desplazada 30px abajo)
+//   .fade.show   -> visible  (opacity 1, desplazada 0px)
 // La clase .show la agrega aquí, en JavaScript, en el momento
 // justo en que la tarjeta entra al área visible.
 // ============================================================

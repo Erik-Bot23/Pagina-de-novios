@@ -41,12 +41,19 @@
    emojis, pero se animan desfasados (animation-delay de 6s en ::after). */
 .footer-hearts::before,
 .footer-hearts::after {
-    content: "❤️ ❤️ ✨ 🌸 🌸"; /* el texto decorativo */
+    content: ""; /* el texto decorativo */
     position: absolute;
     width: 100%;               /* ocupan todo el ancho */
+    height: 60px;
     left: 0;
-    font-size: 2rem;
-    opacity: 0.15;             /* muy tenues (decorativos) */
+    /*Cada capa = una imagen. Formato: url('ruta') posición/tamaño np repeat.
+      La ruta es relativa al archivo CSS, por eso sube un nivel con ..*/
+    background: 
+    url('../Assets/Icons/corazon.png')   10% center / 45px no-repeat,
+    url('../Assets/Icons/estrellas.png') 35% center / 45px no-repeat,
+    url('../Assets/Icons/flor.png')      60% center / 45px no-repeat,
+    url('../Assets/Icons/avion.png')     85% center / 35px no-repeat;
+    opacity: 0.35;             /* muy tenues (decorativos) */
     animation: floatHearts 12s linear infinite; /* suben y suben sin parar */
 }
 

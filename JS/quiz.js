@@ -20,7 +20,8 @@ export function initQuiz(){
     // ------------------------------------------------
     const questions = [
         {
-            question: "¿Dónde fue nuestra primera cita? ❤️",
+            question: "¿Dónde fue nuestra primera cita?",
+            img: "Assets/Images/11.jpeg",
             options: ["Hakuna Matata", "Pizzería", "Cempasúchil Café y Mezcal"],
             correct: 1
         },
@@ -76,7 +77,7 @@ export function initQuiz(){
         },
         {
             question: "¿Seguiremos escribiendo nuestra historia juntos?",
-            options: ["Siempre ❤️", "Obviamente", "Por supuesto"],
+            options: ["Siempre", "Obviamente", "Por supuesto"],
             correct: 0
         }
     ];
@@ -96,6 +97,7 @@ export function initQuiz(){
     const quizContent = document.getElementById("quizContent"); // pantalla de pregunta
     const scoreText = document.getElementById("scoreText");  // texto de puntaje
     const restartBtn = document.getElementById("restartQuiz"); // botón reiniciar
+    const quizImage = document.getElementById("quizImage"); //Imagen de la pregunta
 
     // ------------------------------------------------
     // 3) ESTADO del juego
@@ -116,6 +118,14 @@ export function initQuiz(){
         questionText.innerText = q.question;
         counter.innerText = `Pregunta ${currentQuestion + 1} de ${questions.length}`;
         optionsContainer.innerHTML = "";
+
+        //Si la pregunta tiene imagen, la muestra; si no, la oculta
+        if(q.img){
+            quizImage.src = q.img;
+            quizImage.style.display = "block"
+        } else {
+            quizImage.style.display = "none";
+        }
 
         // Por cada opción se crea su botón
         q.options.forEach((option, index) => {

@@ -13,13 +13,10 @@
 
 // Importaciones: una por sección de la página.
 import { initAlbum } from "./album.js";      // Álbum tipo libro
-import { initBook } from "./book.js";        // (sin usar) otro tipo de álbum
-import { initCarousel } from "./carousel.js";// (sin usar) carrusel simple
 import { initMoments } from "./moments.js";  // Carrusel de momentos
 import { initPhrases } from "./phrases.js";  // Frases cambiantes
 import { initQuiz } from "./quiz.js";        // Quiz + música
 import { initScroll } from "./scroll.js";    // Animación de aparición al hacer scroll
-import { initTimeline } from "./timeline.js";// (sin usar) línea de tiempo
 
 // DOMContentLoaded: espera a que TODO el HTML (incluidas
 // imágenes y <audio>) esté cargado y parseado antes de correr.
@@ -32,13 +29,4 @@ document.addEventListener("DOMContentLoaded", () => {
     initPhrases();   // Cambia la frase cada 2 segundos
     initScroll();    // Muestra las tarjetas .fade al hacer scroll
     initQuiz();      // Quiz + dispara la música
-
-    // Módulos en DIETA (comentados a propósito):
-    // No tienen sus elementos en el HTML actual, así que si
-    // se activaran lanzarían un error. Se dejaron como referencia,
-    // por si luego quieres añadir una línea de tiempo o un
-    // carrusel simple.
-    //initTimeline();  // Requiere un elemento #timeline
-    //initBook();      // Requiere elementos .page
-    //initCarousel();  // Requiere elementos .carousel img
 });

@@ -46,28 +46,46 @@ export function initMoments(){
             desc: "Nuestro primer dia del amor y la amistad juntos"
         },
         {
+            img: "Assets/Images/58.jpeg",
+            title: "Campo de flores",
+            date: "Febreo de 2026",
+            desc: "Xoxocotlan Oaxaca"
+        },
+        {
             img: "Assets/Images/46.jpeg",
             title: "Primer viaje juntos",
-            date: "Febrero de 2026",
+            date: "Abril de 2026",
             desc: "Acuario Michin en CDMX"
         },
         {
             img: "Assets/Images/36.jpeg",
             title: "Primer viaje juntos",
-            date: "Febrero de 2026",
+            date: "Abril de 2026",
             desc: "Torre latinoamericana en CDMX"
         },
         {
             img: "Assets/Images/53.jpeg",
             title: "Primer viaje juntos",
-            date: "Febrero de 2026",
+            date: "Abril de 2026",
             desc: "Zocalo en CDMX"
         },
         {
-            img: "Assets/Images/58.jpeg",
-            title: "Campo de flores",
-            date: "Mayo de 2026",
-            desc: "Xoxocotlan Oaxaca"
+            img: "Assets/Images/77.jpeg",
+            title: "Viaje a la playa",
+            date: "Julio de 2026",
+            desc: "Puerto Escondido, Oaxaca"
+        },
+        {
+            img: "Assets/Images/82.jpeg",
+            title: "Cita en la playa por la noche",
+            date: "Julio de 2026",
+            desc: "Puerto Escondido, Oaxaca"
+        },
+        {
+            img: "Assets/Images/80.jpeg",
+            title: "Primer año como novios",
+            date: "Septiembre de 2026",
+            desc: "San Jose del Pacifico, Oaxaca"
         }
     ];
 

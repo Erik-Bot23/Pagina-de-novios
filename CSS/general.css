@@ -86,3 +86,14 @@ button {
   border-radius: 15px;
   box-shadow: 0 10px 30px rgba(0,0,0,0.1); /* sombra suave = efecto "flotante" */
 }
+
+/*------------ Iconos ---------------*/
+.icon{
+  height: 1.1em; /*Alto igual al texto: em = tamaño de fuente del padre.
+                    Así en <h2> se ve grande el botón, chico.*/
+  width: auto;   /*El ancho se ajusta solo (mantiene proporción)*/
+  vertical-align: middle; /*Centra la imagen con la línea de texto*/
+  object-fit: contain; /*Si la imagen no es cuadrada, la encongie sin recortar*/
+  margin: 0 0.15em;   /*Aire a izquierda y derecha para que no se pegue al texto*/
+  pointer-events: none; /*Evita que la imagen robe los clics del botón*/
+}

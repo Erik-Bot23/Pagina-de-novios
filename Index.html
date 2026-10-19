@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <!--
   ============================================================
-  MI YANET - "Nuestra historia"
   Página romántica de una sola vista (one-page) para Erik y Yanet.
   Estructura de la página, de arriba hacia abajo:
     1. Música de fondo (audio en loop)
@@ -24,7 +23,7 @@
     Sin esta etiqueta, el navegador "acerca el zoom" y el diseño se rompe.
   -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Nuestra historia ❤️</title>
+  <title>Nuestra historia</title>
 
   <!--
     IMPORTANTE: las rutas distinguen mayúsculas/minúsculas en servidores
@@ -65,9 +64,9 @@
        ========================================================== -->
   <section class="section">
     <div class="card fade phrase-card">
-      <h2>❤️</h2>
+      <h2><img class="icon" src="Assets/Icons/corazon.png"></h2>
       <p id="phrase">
-        Eres mi lugar favorito ❤️
+        Eres mi lugar favorito <img class="icon" src="Assets/Icons/corazon.png">
       </p>
     </div>
   </section>
@@ -80,7 +79,7 @@
   <section class="story-section">
     <div class="story-container">
       <div class="story-header">
-        <span class="story-heart">❤️</span>
+        <span class="story-heart"><img class="icon" src="Assets/Icons/corazon.png"></span>
         <h2>Nuestra historia</h2>
         <div class="story-line"></div>
       </div>
@@ -95,7 +94,8 @@
           Y día con día quiero seguir demostrandote cuanto te amo y cada día quiero ser mejor hombre para ti.
         </p>
         <p>
-          Nustra historia apenas comienza y ya eres una de las mejores cosas que me han pasado, quiero construir una vida a tu lado. ❤️
+          Nustra historia apenas comienza y ya eres una de las mejores cosas que me han pasado, quiero construir una vida a tu lado. 
+          <img class="icon" src="Assets/Icons/corazon.png">
         </p>
       </div>
     </div>
@@ -129,14 +129,14 @@
 
       <!--Botón izquierdo-->
       <button id="prev" class="album-btn">
-          ❮
+          <img class="icon" src="Assets/Icons/izquierda.png">
       </button>
 
       <div class="book">
         <!-- Portada del libro -->
         <div class="book-cover" id="bookCover">
             <h3>Erik & Yanet</h3>
-            <span>❤️</span>
+            <span><img class="icon" src="Assets/Icons/corazon.png" alt=""></span>
             <p>Nuestros recuerdos</p>
         </div>
 
@@ -146,7 +146,7 @@
 
             <div class="page-text">
                 <p id="albumText">
-                    Nuestro primer recuerdo ❤️
+                    Nuestro primer recuerdo <img class="icon" src="Assets/Icons/corazon.png">
                 </p>
             </div>
         </div>
@@ -154,7 +154,7 @@
 
       <!--Botón derecho-->
       <button id="next" class="album-btn">
-          ❯
+          <img class="icon" src="Assets/Icons/derecha.png">
       </button>
     </div>
   </section>
@@ -166,12 +166,13 @@
        ========================================================== -->
   <section class="section">
     <div class="card fade">
-      <h2>💌 Para ti</h2>
+      <h2><img class="icon" src="Assets/Icons/carta-de-amor.png" alt="Carta de amor"> Para ti</h2>
       <p>
         ¿Qué tanto recuerdas de nuestra historia?
       </p>
       <button class="btn" id="openQuizBtn">
-        Comenzar Quiz ❤️
+        Comenzar Quiz
+        <img class="icon" src="Assets/Icons/corazon.png" alt="Corazón">
       </button>
     </div>
   </section>
@@ -190,19 +191,20 @@
 
       <!-- Botón para cerrar el modal -->
       <button class="close-quiz" id="closeQuiz">
-        ✕
+        <img class="icon" src="Assets/Icons/cruz.png" alt="Eliminar">
       </button>
 
       <!-- Contenido de pregunta (se rellena con JS) -->
       <div id="quizContent">
         <h2 id="quizQuestion"></h2>
+        <img id="quizImage" class="quiz-img" src="" alt="Pista de la pregunta">
         <div class="quiz-options" id="quizOptions"></div>
         <p id="quizCounter"></p>
       </div>
 
       <!-- Resultado final (oculto hasta terminar) -->
       <div class="quiz-result" id="quizResult">
-        <h2>Resultado ❤️</h2>
+        <h2>Resultado <img class="icon" src="Assets/Icons/corazon.png"></h2>
         <p id="scoreText"></p>
         <button class="btn" id="restartQuiz">
           Intentar otra vez
@@ -218,7 +220,7 @@
        ========================================================== -->
   <footer class="love-footer">
     <div class="footer-hearts"></div>
-    <h2>Erik y Yanet ❤️</h2>
+    <h2>Erik y Yanet <img class="icon" src="Assets/Icons/corazon.png"></h2>
     <p>
       "Gracias por formar parte de mi historia favorita."
     </p>
