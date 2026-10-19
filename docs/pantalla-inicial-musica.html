@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pantalla inicial con música — Documentación de la mejora</title>
+<style>
+  :root {
+    --azul: #5DADE2;
+    --azul-oscuro: #2C3E50;
+    --rosa: #e78f9e;
+    --gris: #5D6D7E;
+    --fondo: #fbf7f8;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    color: #333;
+    background: var(--fondo);
+    line-height: 1.6;
+    padding: 30px;
+  }
+  .page {
+    max-width: 900px;
+    margin: 0 auto;
+    background: #fff;
+    border-radius: 14px;
+    box-shadow: 0 5px 30px rgba(0,0,0,0.12);
+    overflow: hidden;
+  }
+  header.cover {
+    padding: 45px 45px 35px;
+    background: linear-gradient(135deg, var(--azul), #AF7AC5);
+    color: #fff;
+    text-align: center;
+  }
+  header.cover h1 { font-size: 2.2rem; margin-bottom: 8px; }
+  header.cover p  { font-size: 1.05rem; opacity: .95; }
+  main { padding: 40px 45px 50px; }
+  h2 {
+    font-size: 1.5rem;
+    color: var(--azul-oscuro);
+    margin: 38px 0 14px;
+    padding-bottom: 6px;
+    border-bottom: 3px solid var(--azul);
+  }
+  h2:first-of-type { margin-top: 6px; }
+  h3 { color: var(--azul-oscuro); margin: 20px 0 8px; font-size: 1.08rem; }
+  p { margin-bottom: 10px; }
+  ul, ol { padding-left: 22px; margin-bottom: 12px; }
+  li { margin-bottom: 5px; }
+  code {
+    font-family: Consolas, 'Courier New', monospace;
+    font-size: .9em;
+    background: #f0f3f6;
+    padding: 2px 6px;
+    border-radius: 5px;
+    color: #c0392b;
+  }
+  pre {
+    font-family: Consolas, 'Courier New', monospace;
+    background: #243342;
+    color: #e8f0f8;
+    padding: 16px 18px;
+    border-radius: 10px;
+    overflow-x: auto;
+    font-size: .85rem;
+    line-height: 1.5;
+    margin-bottom: 14px;
+  }
+  pre code { background: none; color: inherit; padding: 0; }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 14px 0 18px;
+    font-size: .92rem;
+  }
+  th, td { border: 1px solid #dde4ea; padding: 8px 12px; text-align: left; }
+  th { background: #eef4f9; color: var(--azul-oscuro); }
+  tr:nth-child(even) td { background: #fafcfe; }
+  .tag {
+    display: inline-block;
+    font-size: .72rem;
+    font-weight: 700;
+    padding: 2px 9px;
+    border-radius: 20px;
+    color: #fff;
+  }
+  .tag.html { background: #e67e22; }
+  .tag.css { background: #2980b9; }
+  .tag.js { background: #f1c40f; color: #333; }
+  .tag.new { background: #27ae60; }
+  .box {
+    background: #fdf3e3;
+    border-left: 4px solid #f39c12;
+    padding: 12px 16px;
+    border-radius: 0 8px 8px 0;
+    margin: 14px 0;
+    font-size: .93rem;
+  }
+  .box.green { background: #eafaf1; border-color: #27ae60; }
+  .box.red { background: #fdedec; border-color: #e74c3c; }
+  .badge-strip { margin-top: 14px; text-align: center; }
+  .badge-strip span { margin: 0 4px; }
+  footer { text-align: center; padding: 20px; color: #999; font-size: .85rem; }
+  @media print {
+    body { background: #fff; padding: 0; }
+    .page { box-shadow: none; border-radius: 0; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header class="cover">
+    <h1>❤️ Pantalla inicial (cortina) con música de fondo</h1>
+    <p>Documentación de la mejora: cómo arrancar la música desde el primer clic</p>
+    <div class="badge-strip">
+      <span class="tag html">HTML</span>
+      <span class="tag css">CSS</span>
+      <span class="tag js">JS</span>
+      <span class="tag new">2 archivos nuevos · 3 modificaciones</span>
+    </div>
+  </header>
+
+  <main>
+
+    <h2>1. El problema: la política de autoplay</h2>
+    <p>
+      Antes de esta mejora, la canción de fondo solo empezaba a sonar cuando la visitante daba clic en
+      <code>Comenzar Quiz</code>. La razón no es un bug: es una <strong>regla de todos los navegadores modernos</strong>
+      (Chrome, Edge, Firefox, Safari).
+    </p>
+    <p>
+      Esa regla se llama <strong>política de autoplay</strong> y dice, en resumen:
+    </p>
+    <div class="box red">
+      <strong>Un navegador NO permite reproducir audio (ni video con sonido) hasta que el usuario haya interactuado
+      al menos una vez con la página</strong> — un clic, un toque o una pulsación de tecla. Esa interacción se
+      llama en inglés <em>user gesture</em>.
+    </div>
+    <p>
+      ¿Por qué existe? Porque nada es más molesto que una pestaña que arranca gritando música sin pedir permiso.
+      Los navegadores lo bloquean por diseño, y si intentas llamar a <code>audio.play()</code> sin un clic previo,
+      el navegador rechaza la llamada (y en la consola aparece un mensaje tipo
+      <em>"play() failed because the user didn't interact with the document first"</em>).
+    </p>
+
+    <h2>2. La solución: una cortina de entrada</h2>
+    <p>
+      La idea es simple y muy usada en sitios con música: mostrar una <strong>pantalla inicial (cortina)</strong>
+      que cubra toda la página con un botón tipo <em>"Ver nuestra historia"</em>. Ese clic cumple dos cosas a la vez:
+    </p>
+    <ol>
+      <li>Es la <strong>interacción de usuario</strong> que el navegador exige → se autoriza <code>music.play()</code>.</li>
+      <li>Activa la <strong>animación de salida</strong> de la cortina (desvanecimiento) y revela el sitio.</li>
+    </ol>
+    <p>
+      <strong>No se modifica nada del contenido existente</strong> (hero, frases, historia, momentos, álbum, quiz, footer):
+      la cortina es una capa más encima de todo. Al cerrarse, la página queda exactamente igual que antes.
+    </p>
+
+    <h3>Archivos tocados por esta mejora</h3>
+    <table>
+      <tr><th>Archivo</th><th>Acción</th><th>Qué se hace</th></tr>
+      <tr><td><code>CSS/splash.css</code></td><td><span class="tag new">NUEVO</span></td><td>Estilos de la cortina</td></tr>
+      <tr><td><code>JS/splash.js</code></td><td><span class="tag new">NUEVO</span></td><td>Lógica: clic → música + ocultar cortina</td></tr>
+      <tr><td><code>Index.html</code></td><td>Modificar</td><td>Insertar el HTML de la cortina al inicio del <code>&lt;body&gt;</code></td></tr>
+      <tr><td><code>JS/main.js</code></td><td>Modificar</td><td>Importar y ejecutar <code>initSplash()</code></td></tr>
+      <tr><td><code>CSS/main.css</code></td><td>Modificar</td><td>Agregar <code>@import 'splash.css'</code></td></tr>
+    </table>
+
+    <h2>3. Paso 1 — Crear <code>CSS/splash.css</code></h2>
+    <p>
+      La cortina es un <code>div</code> con <code>position: fixed</code> e <code>inset: 0</code>, igual que el modal del quiz,
+      pero con <code>z-index: 10000</code> (mayor que el <code>9999</code> del quiz) para quedar por encima de todo.
+    </p>
+    <pre><code>/* ============================================================
+   splash.css — PANTALLA INICIAL (CORTINA)
+   ------------------------------------------------------------
+   Capa fija que cubre toda la página mientras el navegador
+   aún no ha autorizado la música. El botón de la cortina es
+   la "interacción de usuario" que permite llamar a play().
+   Cuando el JS agrega la clase .hide, la cortina se desvanece
+   con una transición y deja de bloquear la página.
+   ============================================================ */
+
+/* ---------- CORTINA (cubre todo) ---------- */
+.splash {
+    position: fixed;       /* no se mueve con el scroll */
+    inset: 0;              /* ocupa 100% del ancho y alto */
+    z-index: 10000;        /* por ENCIMA del modal del quiz (9999) */
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 20px;
+
+    color: white;
+    /* Misma paleta romántica del body, un poco más intensa */
+    background:
+        radial-gradient(circle at top left, rgba(231, 8, 45, 0.35), transparent 30%),
+        radial-gradient(circle at bottom right, rgba(2, 147, 244, 0.25), transparent 35%),
+        linear-gradient(180deg, #efcccc 0%, #f7f4f8 40%, #c5d8f0 100%);
+
+    /* Transición de salida: dura 0.8s y también anima la
+       visibilidad (ver .hide más abajo) */
+    transition: opacity 0.8s ease, visibility 0.8s ease;
+}
+
+/* ---------- SALIDA: clase que pone el JS al hacer clic ---------- */
+.splash.hide {
+    opacity: 0;             /* se desvanece */
+    visibility: hidden;     /* al terminar la transición deja de existir
+                               visualmente y de capturar clics */
+    pointer-events: none;   /* doble seguro: ya no intercepta el mouse */
+}
+
+/* ---------- CONTENIDO (nombres + botón) ---------- */
+.splash-content {
+    animation: splashIn 1.2s ease both;
+}
+
+.splash h1 {
+    font-size: 3.5rem;
+    margin: 0 0 10px;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+}
+
+.splash p {
+    font-size: 1.3rem;
+    margin-bottom: 35px;
+    letter-spacing: 2px;
+}
+
+/* El botón reutiliza la clase .btn de general.css;
+   aquí solo se le agrega su propia animación de entrada */
+.splash .btn {
+    animation: splashIn 1.2s ease 0.3s both; /* 0.3s de retraso */
+}
+
+/* Entrada suave: aparece desde abajo y transparente */
+@keyframes splashIn {
+    from { opacity: 0; transform: translateY(25px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ---------- MÓVIL ---------- */
+@media (max-width: 768px) {
+    .splash h1 { font-size: 2.4rem; }
+}</code></pre>
+
+    <h3>Detalles que vale la pena entender</h3>
+    <ul>
+      <li>
+        <code>z-index: 10000</code>: el modal del quiz usa <code>9999</code>. Si la cortina quedara por debajo,
+        al cerrarse podría destapar un modal abierto. Con un número mayor, la cortina siempre está arriba.
+      </li>
+      <li>
+        <code>visibility: hidden</code> en lugar de solo <code>display: none</code>: <code>display</code> no se puede
+        transicionar, así que la cortina "saltaría" sin animarse. <code>visibility</code> sí participa en la
+        transición: se mantiene visible durante los 0.8s del desvanecimiento y solo al final se vuelve invisible.
+      </li>
+      <li>
+        <code>pointer-events: none</code>: incluso mientras la transición corre, la cortina deja de "robar" clics.
+      </li>
+    </ul>
+
+    <h2>4. Paso 2 — Insertar el HTML en <code>Index.html</code></h2>
+    <p>
+      Agregar el bloque de la cortina <strong>como primer elemento dentro de <code>&lt;body&gt;</code></strong>
+      (justo después de la etiqueta <code>&lt;body&gt;</code>, antes del <code>&lt;audio&gt;</code>):
+    </p>
+    <pre><code>  &lt;body&gt;
+
+    &lt;!-- ==========================================================
+         PANTALLA INICIAL (CORTINA)
+         Cubre toda la página hasta que se dé clic en el botón.
+         Ese clic es la "interacción de usuario" que los navegadores
+         exigen para poder reproducir audio (política de autoplay).
+         Al hacer clic: inicia la música y la cortina se desvanece.
+         Estilos en CSS/splash.css, lógica en JS/splash.js.
+         ========================================================== --&gt;
+    &lt;div class="splash" id="splash"&gt;
+      &lt;div class="splash-content"&gt;
+        &lt;h1&gt;Erik y Yanet&lt;/h1&gt;
+        &lt;p&gt;Nuestra historia juntos&lt;/p&gt;
+        &lt;button class="btn" id="startBtn"&gt;
+          Ver nuestra historia
+          &lt;img class="icon" src="Assets/Icons/corazon.png" alt="Corazón"&gt;
+        &lt;/button&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;!-- ==========================================================
+         AUDIO DE FONDO
+         ... (bloque existente, sin cambios) ...
+         ========================================================== --&gt;
+    &lt;audio id="bgMusic" loop&gt;</code></pre>
+    <div class="box">
+      <strong>Tip:</strong> el botón usa la clase <code>.btn</code> y el icono la clase <code>.icon</code> que ya existen
+      en <code>CSS/general.css</code>, así el botón se ve consistente con el resto del sitio sin escribir CSS extra.
+    </div>
+
+    <h2>5. Paso 3 — Crear <code>JS/splash.js</code></h2>
+    <pre><code>// ============================================================
+// splash.js — PANTALLA INICIAL (CORTINA DE ENTRADA)
+// ------------------------------------------------------------
+// Los navegadores prohíben reproducir audio sin que el usuario
+// haya interactuado antes con la página (política de autoplay).
+// Esta cortina aprovecha el primer clic ("Ver nuestra historia")
+// para arrancar la música de fondo y, al mismo tiempo, ocultarse
+// con una animación de desvanecimiento.
+// ============================================================
+export function initSplash(){
+
+    const splash = document.getElementById("splash");
+    const startBtn = document.getElementById("startBtn");
+    const music = document.getElementById("bgMusic");
+
+    // Mientras la cortina esté visible, la página de atrás no
+    // debe hacer scroll. Se reutiliza la clase .modal-open que
+    // ya existe en CSS/general.css (overflow: hidden).
+    document.body.classList.add("modal-open");
+
+    // El clic del usuario es la acción que autoriza al navegador
+    // a reproducir el audio. Por eso play() va DENTRO del
+    // addEventListener: fuera de un evento sería bloqueado.
+    startBtn.addEventListener("click", () => {
+        music.play();                              // 1) arranca la canción
+        document.body.classList.remove("modal-open"); // 2) devuelve el scroll
+        splash.classList.add("hide");              // 3) dispara el desvanecimiento
+    });
+}</code></pre>
+
+    <h3>Explicación línea por línea de la parte importante</h3>
+    <ul>
+      <li>
+        <code>document.body.classList.add("modal-open")</code>: reutiliza la clase que ya controla el scroll del
+        body (creada para el modal del quiz). Así no se duplica CSS.
+      </li>
+      <li>
+        <code>music.play()</code>: devuelve una <em>Promise</em>. Si el navegador acepta, la música arranca; si la
+        rechazara, la promesa se rechaza y puede aparecer un warning en consola. Dentro de un clic esto no ocurre.
+      </li>
+      <li>
+        <code>splash.classList.add("hide")</code>: solo agrega la clase; la animación la resuelve el CSS.
+        El JS no controla la animación en ningún otro punto (separación de responsabilidades).
+      </li>
+    </ul>
+    <div class="box green">
+      <strong>Nota sobre el quiz:</strong> <code>JS/quiz.js</code> sigue llamando a <code>music.play()</code> al abrir el
+      modal. No hay que borrarlo: si la música ya está sonando, <code>play()</code> no la reinicia ni la duplica
+      (es un no-op). Además sirve de respaldo por si la cortina se llegara a eliminar en el futuro.
+    </div>
+
+    <h2>6. Paso 4 — Conectar en <code>JS/main.js</code></h2>
+    <p>Dos líneas nuevas: el import arriba de todo y la llamada dentro de <code>DOMContentLoaded</code>:</p>
+    <pre><code>// ... imports existentes ...
+import { initSplash } from "./splash.js";  // NUEVO
+
+document.addEventListener("DOMContentLoaded", () =&gt; {
+    initSplash();    // NUEVO: cortina inicial (debe ir PRIMERO)
+    initAlbum();
+    initMoments();
+    initPhrases();
+    initScroll();
+    initQuiz();
+});</code></pre>
+    <p>
+      Se coloca <code>initSplash()</code> primero por claridad: es lo primero que ve la visitante.
+      Los demás módulos siguen funcionando normalmente debajo de la cortina, así que su orden no afecta el resultado.
+    </p>
+
+    <h2>7. Paso 5 — Registrar el CSS en <code>CSS/main.css</code></h2>
+    <pre><code>@import 'splash.css';   /* Pantalla inicial (cortina) — NUEVO */</code></pre>
+    <p>
+      Sin este <code>@import</code>, el navegador nunca descarga <code>splash.css</code> y la cortina se vería
+      como un bloque de texto plano sin fondo. Este patrón (un <code>main.css</code> que solo importa) es el que
+      usa todo el proyecto.
+    </p>
+
+    <h2>8. Flujo completo de la mejora</h2>
+    <ol>
+      <li>La visitante abre <code>Index.html</code>.</li>
+      <li>El navegador carga todo el sitio (hero, frases, álbum, quiz...) <strong>por debajo</strong> de la cortina.</li>
+      <li>La cortina (<code>position: fixed; z-index: 10000</code>) lo cubre todo y el <code>body</code> tiene el scroll bloqueado con <code>.modal-open</code>.</li>
+      <li>Ella da clic en <strong>"Ver nuestra historia"</strong>.</li>
+      <li>El evento <code>click</code> (interacción de usuario) permite ejecutar <code>music.play()</code> → la canción arranca y se repite en loop.</li>
+      <li>Se quita <code>.modal-open</code> del body (vuelve el scroll) y se agrega <code>.hide</code> a la cortina.</li>
+      <li>La cortina se desvanece en 0.8s y queda invisible e inofensiva. El sitio se ve normal.</li>
+      <li>Si abre el quiz más adelante, <code>play()</code> en quiz.js es redundante pero inofensivo: la música sigue sonando desde el paso 5.</li>
+    </ol>
+
+    <h2>9. Pruebas recomendadas</h2>
+    <ol>
+      <li>Abrir la página: debe verse la cortina y <strong>NO</strong> debe hacerse scroll detrás de ella.</li>
+      <li>Dar clic en el botón: la canción debe arrancar <strong>inmediatamente</strong> y la cortina desvanecerse.</li>
+      <li>Intentar hacer scroll después del clic: debe funcionar normal.</li>
+      <li>Probar con el sonido del dispositivo bajo y subirlo: confirmar que la música suena desde el inicio (no desde el quiz).</li>
+      <li>Probar en celular: abrir la consola del navegador (si está conectado a Chrome/Edge) o usar
+          <code>console.log</code> temporal para verificar que no hay errores de <code>play()</code>.</li>
+      <li>Abrir el quiz y cerrarlo: no debe pasar nada raro con la música ni con el scroll.</li>
+    </ol>
+
+    <h2>10. Posibles mejoras futuras (opcionales)</h2>
+    <ul>
+      <li>Botón de silenciar/activar música (icono de altavoz fijo en una esquina).</li>
+      <li>Guardar en <code>localStorage</code> que ya se dio clic, para no repetir la cortina en recargas dentro de la misma sesión.</li>
+      <li>Cerrar la cortina también con la tecla <kbd>Enter</kbd> o <kbd>Espacio</kbd> (el <code>&lt;button&gt;</code> ya lo hace por defecto al estar enfocado).</li>
+    </ul>
+
+  </main>
+
+  <footer>
+    ❤️ Documentación generada para el proyecto "Página de novios" — Erik y Yanet ·
+    Complementa a <code>docs/como-funciona-el-proyecto.pdf</code> y <code>AGENTS.md</code>
+  </footer>
+
+</div>
+</body>
+</html>
