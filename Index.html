@@ -32,6 +32,23 @@
   <link rel="stylesheet" href="CSS/main.css">
 </head>
 <body>
+  <!-- =========================================================
+    Pantalla inicial (cortina)
+    Cubre toda la página hasta que se dé clic en el botón.
+    Ese clic es la "interacción de usuario" que los navegadores
+    exigen para poder reproducir audio (política de autoplay).
+    Al hacer clic inicia la música y la cortina se desvanece.
+      ========================================================== -->
+  <div class="splash" id="splash">
+    <div class="splash-content">
+      <h1>Erik y Yanet</h1>
+      <p>Nuestra historia juntos</p>
+      <button class="btn" id="startBtn">
+        Ver nuestra historia
+        <img class="icon" src="Assets/Icons/corazon.png" alt="Corazón">
+      </button>
+    </div>
+  </div>
 
   <!-- ==========================================================
        AUDIO DE FONDO

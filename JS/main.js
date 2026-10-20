@@ -17,6 +17,7 @@ import { initMoments } from "./moments.js";  // Carrusel de momentos
 import { initPhrases } from "./phrases.js";  // Frases cambiantes
 import { initQuiz } from "./quiz.js";        // Quiz + música
 import { initScroll } from "./scroll.js";    // Animación de aparición al hacer scroll
+import { initSplash } from "./splash.js";
 
 // DOMContentLoaded: espera a que TODO el HTML (incluidas
 // imágenes y <audio>) esté cargado y parseado antes de correr.
@@ -24,6 +25,7 @@ import { initScroll } from "./scroll.js";    // Animación de aparición al hace
 // null porque los elementos aún no existen.
 document.addEventListener("DOMContentLoaded", () => {
     // Módulos ACTIVOS (los que usa la página):
+    initSplash();
     initAlbum();     // Álbum de fotos con efecto libro
     initMoments();   // Carrousel infinito de momentos
     initPhrases();   // Cambia la frase cada 2 segundos

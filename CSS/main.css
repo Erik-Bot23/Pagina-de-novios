@@ -9,6 +9,7 @@
    Orden de carga (arriba = primero, abajo = último):
    al final gana la regla de mayor "especificidad" o igualdad.
    ============================================================ */
+@import 'splash.css';
 @import 'general.css';   /* Reset base, botones, tarjetas, secciones */
 @import 'scroll.css';    /* Animación .fade (aparecer al hacer scroll) */
 @import 'hero.css';       /* Portada de pantalla completa */
